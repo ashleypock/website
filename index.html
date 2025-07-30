@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ashley Pock</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+body {top: 0; left: 0; width: 99%; height: 97%;
+    position: absolute; display: table}
+  p {display: table-cell; vertical-align: middle; text-align: center}
+#timezone * {text-decoration: none;}
+
+</style>
+
+<script type="text/javascript">
+    // declare time zone formatting
+    let options = {
+        timeZone: 'America/Los_Angeles',
+        hour: 'numeric',
+        minute: 'numeric',
+    },
+    formatter = new Intl.DateTimeFormat([], options);
+
+    // set time
+    setInterval(
+        () => {
+            document.querySelector("#time").innerText = formatter.format(new Date());
+        }
+    , 1000)
+</script>
+</head>
+
+<p>
+<font size="5"><b>Ashley Pock</b></font> <br>
+<br>
+<img src="photos/nighttime.jpg" style="width:300px;"><br>
+<br>
+<span id=timezone>
+<a href="https://24timezones.com/usa_time/ca_orange/irvine.php">Time @ Irvine</a>... <span
+    id="time">0:00 PM</span> <a href="https://24timezones.com/time-zone/pt">PST</a>
+</span>
+<br><br>
+
+<a href="about.html">about</a> |
+<a href="">cool stuff</a> |
+<a href="">thoughts</a> |
+<a href="">resume</a> |
+<a href="contact.html">contact</a>
+
+</p>
+<br>
+<br>
+
+</html>
