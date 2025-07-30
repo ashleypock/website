@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head><meta name="viewport" http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Ashley Pock</title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <style>
-body {top: 0; left: 0; width: 99%; height: 97%;
-    position: absolute; display: table}
-  p {display: table-cell; vertical-align: middle; text-align: center}
-#timezone * {text-decoration: none;}
+    .sidebar {
+        height: 100vh; 
+        width: 200px; 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        overflow-x: hidden;
+
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; /* vertical centering of links */
+        align-items: flex-start; /* align links to left edge */
+        padding-left: 50px; /* optional: add a bit of padding from the edge */
+    }
+
+    .sidebar a {
+        display: block; 
+        padding: 16px;
+        text-align: left; /* align link text to left */
+    }
+        
+    .content {
+        height: 100vh;            /* full viewport height */
+        display: flex;
+        flex-direction: column;   /* stack children vertically */
+        justify-content: center;  /* vertical centering */
+        align-items: center;      /* horizontal centering */
+        padding: 16px;
+    }
+
+    body {top: 0; left: 0; width: 99%; height: 97%;
+        position: absolute; display: table}
+    p {display: table-cell; vertical-align: middle; text-align: center}
+    #timezone * {text-decoration: none;}
 
 </style>
 
@@ -30,25 +60,30 @@ body {top: 0; left: 0; width: 99%; height: 97%;
 </script>
 </head>
 
-<p>
-<font size="5"><b>Ashley Pock</b></font> <br>
-<br>
-<img src="photos/nighttime.jpg" style="width:300px;"><br>
-<br>
-<span id=timezone>
-<a href="https://24timezones.com/usa_time/ca_orange/irvine.php">Time @ Irvine</a>... <span
-    id="time">0:00 PM</span> <a href="https://24timezones.com/time-zone/pt">PST</a>
-</span>
-<br><br>
+<body>
+    <div class="sidebar"> 
+        <a href="about.html">about</a>
+        <a href="#">cool stuff</a>
+        <a href="#">thoughts</a>
+        <a href="#">resume</a>
+        <a href="contact.html">contact</a>
+  </div>
+  <div class="content">
+        <p>
+        <font size="5"><b>Ashley Pock</b></font> <br>
+        <br>
+        <img src="photos/nighttime.jpg" style="width:300px;"><br>
+        <br>
+        <span id=timezone>
+        <a href="https://24timezones.com/usa_time/ca_orange/irvine.php">Time @ Irvine</a>... <span
+            id="time">0:00 PM</span> <a href="https://24timezones.com/time-zone/pt">PST</a>
+        </span>
+        <br><br>
 
-<a href="about.html">about</a> |
-<a href="">cool stuff</a> |
-<a href="">thoughts</a> |
-<a href="">resume</a> |
-<a href="contact.html">contact</a>
+        </p>
+        <br>
+        <br>
+    </div>
 
-</p>
-<br>
-<br>
-
+</body>
 </html>
