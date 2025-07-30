@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head><meta name="viewport" http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Ashley Pock</title>
@@ -85,5 +85,82 @@
         <br>
     </div>
 
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>Ashley Pock</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+    .sidebar {
+        height: 100vh;
+        width: 200px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding-left: 50px;
+    }
+    .sidebar a {
+        display: block;
+        padding: 16px;
+        text-align: left;
+    }
+    .content {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        text-align: center;
+    }
+    #timezone a {
+        text-decoration: none;
+    }
+</style>
+<script type="text/javascript">
+    // declare time zone formatting
+    let options = {
+        timeZone: 'America/Los_Angeles',
+        hour: 'numeric',
+        minute: 'numeric',
+    },
+    formatter = new Intl.DateTimeFormat([], options);
+
+    // set time
+    setInterval(
+        () => {
+            document.querySelector("#time").innerText = formatter.format(new Date());
+        }
+    , 1000)
+</script>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="about.html">about</a>
+        <a href="#">cool stuff</a>
+        <a href="#">thoughts</a>
+        <a href="#">resume</a>
+        <a href="contact.html">contact</a>
+    </div>
+    <div class="content">
+        <b style="font-size: 1.5em;">Ashley Pock</b><br><br>
+        <img src="photos/nighttime.jpg" alt="nighttime" style="width: 300px;"><br><br>
+        <span id="timezone">
+            <a href="https://24timezones.com/usa_time/ca_orange/irvine.php">Time @ Irvine</a>... 
+            <span id="time">0:00 PM</span> 
+            <a href="https://24timezones.com/time-zone/pt">PST</a>
+        </span>
+    </div>
 </body>
 </html>
