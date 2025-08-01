@@ -42,21 +42,32 @@
 </style>
 <script type="text/javascript">
     // declare time zone formatting
-    let options = {
+    let timeOptions = {
         timeZone: 'America/Los_Angeles',
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
         hour12: false
-    },
-    formatter = new Intl.DateTimeFormat([], options);
+    }; 
 
+    let dateOptions = {
+        timeZone: 'America/Los_Angeles',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long'
+    }; 
+
+    let timeFormatter = new Intl.DateTimeFormat([], timeOptions); 
+    let dateFormatter = new Intl.DateTimeFormat([], dateOptions); 
     // set time
     setInterval(
         () => {
-            document.querySelector("#time").innerText = formatter.format(new Date());
+            let current = new Date(); 
+            document.querySelector("#date").innerText = dateFormatter.format(current);
+            document.querySelector("#time").innerText = timeFormatter.format(current); 
         }
-    , 1000)
+    , 1000); 
 </script>
 </head>
 <body>
@@ -71,10 +82,10 @@
     <div class="content">
         <b style="font-size: 1.5em;">Ashley Pock</b><br><br>
         <img src="photos/nighttime.jpg" alt="nighttime" style="width: 300px;"><br><br>
-        <span id="timezone" style="color: blue">
-            <a href="https://24timezones.com/usa_time/ca_orange/irvine.php">time @ irvine</a>...
-            <span id="time" style="color: black">00:00</span> 
-            <a href="https://24timezones.com/time-zone/pst">pst</a>
+        <span id="timezone">
+            <a href="https://24timezones.com/usa_time/ca_orange/irvine.php">date && time @ irvine...</a><br>
+            <span id="date">loading date...</span><br>
+            <span id="time">loading time...</span> <a href="https://24timezones.com/time-zone/pst">pst</a>
         </span>
     </div>
 </body>
