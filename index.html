@@ -44,8 +44,10 @@
     // declare time zone formatting
     let options = {
         timeZone: 'America/Los_Angeles',
-        hour: 'numeric',
-        minute: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
     },
     formatter = new Intl.DateTimeFormat([], options);
 
@@ -60,18 +62,19 @@
 <body>
     <div class="sidebar">
         <a href="about.html">about</a>
-        <a href="#">cool stuff</a>
+        <a href="coolstuff.html">cool stuff</a>
         <a href="#">thoughts</a>
         <a href="#">resume</a>
-        <a href="contact.html">contact</a>
+        <a href="contact.html">contact</a> 
+        <a href="#">night mode</a>
     </div>
     <div class="content">
         <b style="font-size: 1.5em;">Ashley Pock</b><br><br>
         <img src="photos/nighttime.jpg" alt="nighttime" style="width: 300px;"><br><br>
         <span id="timezone" style="color: blue">
             <a href="https://24timezones.com/usa_time/ca_orange/irvine.php">time @ irvine</a>...
-            <span id="time" style="color: black">0:00 PM</span> 
-            <a href="https://24timezones.com/time-zone/pt">pst</a>
+            <span id="time" style="color: black">00:00</span> 
+            <a href="https://24timezones.com/time-zone/pst">pst</a>
         </span>
     </div>
 </body>
