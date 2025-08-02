@@ -1,0 +1,174 @@
+<!--
+Note: May consider adding a search bar later on at top if I have a lot of files. 
+-->
+
+<div id="index" role="doc-toc">
+  <style>
+    #index {
+      max-width: 600px;
+      font-family: 'Times New Roman', serif;
+    }
+
+    #index ul {
+      padding-left: 1.5em;
+      margin-top: 0;
+    }
+
+    /* Top-level and nested bullet types */
+    #index > ul {
+      list-style-type: disc;
+    }
+
+    #index ul ul {
+      list-style-type: circle;
+    }
+
+    /* Each item container */
+    #index li {
+      margin-bottom: 0.3em;
+    }
+
+    #index li > .item-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; /* vertically centers text */
+    }
+
+    /* Info container on the right */
+    #index .info {
+      display: flex;
+      min-width: 180px;
+      justify-content: flex-end;
+      color: gray;
+      align-items: center;
+    }
+
+    /* Size and header-size combined */
+    #index .size,
+    #index .header-size {
+      width: 70px;
+      text-align: right;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    /* Add separator "|" after size except in header */
+    #index .info .size:not(.header-size)::after {
+      content: "|";
+      color: gray;
+      padding: 0 0.5em;
+      position: relative;
+    }
+
+    /* Date and header-date combined */
+    #index .date,
+    #index .header-date {
+      width: 90px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* Header styles */
+    #index > ul > li.header {
+      list-style-type: none;
+      font-weight: bold;
+      color: black;
+      margin-bottom: 0.5em;
+    }
+
+    #index > ul > li.header .item-content {
+      border-bottom: 1px solid gray;
+      padding-bottom: 0.3em;
+    }
+
+    /* Header info container */
+    #index .header-info {
+      display: flex;
+      align-items: center;
+      min-width: 180px;
+      justify-content: flex-end;
+    }
+
+    /* Vertical separator for header between size and date */
+    #index .header-divider {
+      width: 1px;
+      background-color: gray;
+      height: 1.3em;
+      margin: 0 0.5em;
+    }
+  </style>
+
+  <h2>thoughts index</h2>
+  <ul>
+    <!-- Header row -->
+    <li class="header">
+      <div class="item-content">
+        <span>filename</span>
+        <span class="header-info">
+          <span class="header-size">size</span>
+          <span class="header-divider" aria-hidden="true"></span>
+          <span class="header-date">last modified</span>
+        </span>
+      </div>
+    </li>
+
+    <li>
+      <div class="item-content">
+        <span>📁 <a href="index.html">..</a></span>
+        <span class="info">
+          <span class="size">—</span>
+          <span class="date">—</span>
+        </span>
+      </div>
+    </li>
+
+    <li>
+      <div class="item-content">
+        <span>📁 <a href="#">Sample Folder</a></span>
+        <span class="info">
+          <span class="size">1.2 MB</span>
+          <span class="date">2025-07-30</span>
+        </span>
+      </div>
+      <ul>
+        <li>
+          <div class="item-content">
+            <span>📄 <a href="#">File 1</a></span>
+            <span class="info">
+              <span class="size">200 KB</span>
+              <span class="date">2025-07-28</span>
+            </span>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <span>📄 <a href="#">File 2</a></span>
+            <span class="info">
+              <span class="size">300 KB</span>
+              <span class="date">2025-07-29</span>
+            </span>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <span>📄 <a href="#">File 3</a></span>
+            <span class="info">
+              <span class="size">700 KB</span>
+              <span class="date">2025-07-30</span>
+            </span>
+          </div>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <div class="item-content">
+        <span>📄 <a href="#">Sample File</a></span>
+        <span class="info">
+          <span class="size">150 KB</span>
+          <span class="date">2025-07-27</span>
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>
