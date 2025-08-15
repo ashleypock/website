@@ -14,7 +14,6 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
       margin-top: 0;
     }
 
-    /* Top-level and nested bullet types */
     #index > ul {
       list-style-type: disc;
     }
@@ -23,7 +22,6 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
       list-style-type: circle;
     }
 
-    /* Each item container */
     #index li {
       margin-bottom: 0.3em;
     }
@@ -31,10 +29,9 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
     #index li > .item-content {
       display: flex;
       justify-content: space-between;
-      align-items: center; /* vertically centers text */
+      align-items: center; 
     }
 
-    /* Info container on the right */
     #index .info {
       display: flex;
       min-width: 180px;
@@ -43,7 +40,6 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
       align-items: center;
     }
 
-    /* Size and header-size combined */
     #index .size,
     #index .header-size {
       width: 70px;
@@ -52,7 +48,6 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
       position: relative;
     }
 
-    /* Add separator "|" after size except in header */
     #index .info .size:not(.header-size)::after {
       content: "|";
       color: gray;
@@ -60,7 +55,6 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
       position: relative;
     }
 
-    /* Date and header-date combined */
     #index .date,
     #index .header-date {
       width: 90px;
@@ -68,7 +62,6 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
       white-space: nowrap;
     }
 
-    /* Header styles */
     #index > ul > li.header {
       list-style-type: none;
       font-weight: bold;
@@ -81,7 +74,6 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
       padding-bottom: 0.3em;
     }
 
-    /* Header info container */
     #index .header-info {
       display: flex;
       align-items: center;
@@ -89,7 +81,6 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
       justify-content: flex-end;
     }
 
-    /* Vertical separator for header between size and date */
     #index .header-divider {
       width: 1px;
       background-color: gray;
@@ -100,7 +91,6 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
 
   <h2>thoughts index</h2>
   <ul>
-    <!-- Header row -->
     <li class="header">
       <div class="item-content">
         <span>filename</span>
@@ -114,7 +104,7 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
 
     <li>
       <div class="item-content">
-        <span>📁 <a href="index.html">..</a></span>
+        <span>📁 <a href="../">..</a></span>
         <span class="info">
           <span class="size">—</span>
           <span class="date">—</span>
@@ -124,20 +114,30 @@ Note: May consider adding a search bar later on at top if I have a lot of files.
 
     <li>
       <div class="item-content">
-        <span>📄 <a href="thoughts/college_reflections/year1.html">year1.html</a></span>
+        <span>📄 <a href="college_reflections/year1.html">year1.html</a></span>
         <span class="info">
           <span class="size">7 KB</span>
-          <span class="date">08/02/2025</span>
+          <span class="date">08/12/2025</span>
         </span>
       </div>
     </li>
 
     <li>
       <div class="item-content">
-        <span>📄 <a href="thoughts/how_to_get_into_a_good_college.html">good_college.html</a></span>
+        <span>📄 <a href="how_to_get_into_a_good_college.html">good_college.html</a></span>
         <span class="info">
           <span class="size">5 KB</span>
           <span class="date">08/12/2025</span>
+        </span>
+      </div>
+    </li>
+
+    <li>
+      <div class="item-content">
+        <span>📄 <a href="html.html">html.html</a></span>
+        <span class="info">
+          <span class="size">28 KB</span>
+          <span class="date">08/14/2025</span>
         </span>
       </div>
     </li>
