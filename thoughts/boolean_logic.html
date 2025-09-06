@@ -1,0 +1,2771 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-06 Sat 13:55 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Boolean Logic and Discrete Structures</title>
+<meta name="author" content="ashley_pock" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Boolean Logic and Discrete Structures</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org58ec426">1. lecture1</a></li>
+<li><a href="#orgab7dde5">2. lecture2</a></li>
+<li><a href="#orgad0b335">3. lecture3</a></li>
+<li><a href="#org2fe8571">4. lecture4</a></li>
+<li><a href="#orgb2bc2d6">5. lecture5</a></li>
+<li><a href="#orga5b6ea3">6. lecture6</a></li>
+<li><a href="#orge9c8bf0">7. lecture7</a></li>
+<li><a href="#org07b44d9">8. lecture8</a></li>
+<li><a href="#orgf045dd6">9. lecture9</a></li>
+<li><a href="#orga27197e">10. lecture10</a></li>
+</ul>
+</div>
+</div>
+<p>
+this summer, I audited a Boolean Logic and Discrete Structures course (I&rsquo;m probably gonna have to actually take the course though since it&rsquo;s required). I figured I should make use of Emacs&rsquo;s (is it Emacs&rsquo; or Emacs&rsquo;s) M-x insert-char command, so I rewrote some of my notes from paper onto here. there are some topics that I omitted because I felt they weren&rsquo;t necessary and/or would have to be drawn out instead. I may add photos/visuals later on when I have time because it would definitely make some topics more clear.
+</p>
+<div id="outline-container-org58ec426" class="outline-2">
+<h2 id="org58ec426"><span class="section-number-2">1.</span> lecture1</h2>
+<div class="outline-text-2" id="text-1">
+<dl class="org-dl">
+<dt>Proposition</dt><dd>a direct statement of fact. (either True or False)
+<ul class="org-ul">
+<li>Ex: San Diego is the capital of California. (False)</li>
+<li>Often give propositions variable names.</li>
+</ul></dd>
+</dl>
+<p>
+Formalisms allow us to abstract away complexities.
+</p>
+
+<p>
+-p
+</p>
+<ul class="org-ul">
+<li>&ldquo;not p&rdquo;</li>
+<li>negation</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">p</th>
+<th scope="col" class="org-left">-p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+p ^ q
+</p>
+<ul class="org-ul">
+<li>uses two propositions, p and q</li>
+<li>&ldquo;p and q&rdquo;</li>
+<li>conjunction</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">p</th>
+<th scope="col" class="org-left">q</th>
+<th scope="col" class="org-left">p ^ q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+p v q
+</p>
+<ul class="org-ul">
+<li>uses two propositions, p and q</li>
+<li>&ldquo;p or q&rdquo; (inclusive or)</li>
+<li>disjunction</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">p</th>
+<th scope="col" class="org-left">q</th>
+<th scope="col" class="org-left">p v q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+p XOR q
+</p>
+<ul class="org-ul">
+<li>uses two propositions, p and q</li>
+<li>sometimes denoted with a + sign surrounded by a circle.</li>
+<li>&ldquo;exclusive or&rdquo;</li>
+<li>in English, &ldquo;or&rdquo; usually refers to exculsive rather than inclusive or.</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">p</th>
+<th scope="col" class="org-left">q</th>
+<th scope="col" class="org-left">p XOR q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+p -&gt; q
+</p>
+<ul class="org-ul">
+<li>conditional AKA logical implication.</li>
+<li>&ldquo;p implies q&rdquo;</li>
+<li>&ldquo;p only if q&rdquo;
+<ul class="org-ul">
+<li>ex: rain implies clouds.</li>
+</ul></li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">p</th>
+<th scope="col" class="org-left">q</th>
+<th scope="col" class="org-left">p -&gt; q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>&ldquo;False implies anything.&rdquo;</li>
+
+<li>converse of p -&gt; q is q -&gt; p.
+<ul class="org-ul">
+<li>reversing order of implication.</li>
+</ul></li>
+<li>contrapositive of p -&gt; q is -q -&gt; -p.
+<ul class="org-ul">
+<li>both expressions are equivalent to each other.</li>
+<li>ex: rain implies clouds. therefore, no clouds means no rain.</li>
+</ul></li>
+<li>inverse of p -&gt; q is -p -&gt; -q.
+<ul class="org-ul">
+<li>negating both side of the implication.</li>
+</ul></li>
+</ul>
+
+<p>
+p &lt;-&gt; q
+</p>
+<ul class="org-ul">
+<li>biconditional</li>
+<li>same thing as (p -&gt; q) ^ (q -&gt; p)</li>
+<li>if p and q are the same, the biconditional is True.</li>
+<li>&ldquo;necessary and sufficient&rdquo;
+<ul class="org-ul">
+<li>ex: rain is sufficient to conclude clouds. therefore, clouds are necessary for rain.</li>
+</ul></li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">p</th>
+<th scope="col" class="org-left">q</th>
+<th scope="col" class="org-left">p &lt;-&gt; q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+operator precedence (AKA order of operations) from highest to lowest
+</p>
+<ul class="org-ul">
+<li>- (not)</li>
+<li>^ (conjunction)</li>
+<li>v (disjunction)</li>
+<li>-&gt; (conditional)</li>
+<li>&lt;-&gt; (bidirectional)</li>
+</ul>
+
+<p>
+boolean logic = binary logic
+</p>
+<ul class="org-ul">
+<li>True = 1</li>
+<li>False = 0</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgab7dde5" class="outline-2">
+<h2 id="orgab7dde5"><span class="section-number-2">2.</span> lecture2</h2>
+<div class="outline-text-2" id="text-2">
+<dl class="org-dl">
+<dt>Tautology</dt><dd>boolean statement that is always True, regardless of the value of its propositional variables.
+<ul class="org-ul">
+<li>ex: (p v -p) always evaluates to True.</li>
+</ul></dd>
+<dt>Contradiction</dt><dd>boolean statement that is always False, regardless of the value of its propositional variables.
+<ul class="org-ul">
+<li>AKA the opposite of tautology.</li>
+<li>ex: (p ^ -p) always evaluates to False.</li>
+</ul></dd>
+<dt>Contingency</dt><dd>boolean statement that sometimes evaluates to True and sometimes evaluates to False.
+<ul class="org-ul">
+<li>AKA mix of tautology and contradiction.</li>
+<li>ex: (p ^ q) is sometimes True, sometimes False.</li>
+</ul></dd>
+</dl>
+
+<p>
+DeMorgan&rsquo;s Law (propositions)
+-(p ^ q) = -p v -q
+-(p v q) = -p ^ -q
+Distribute the negation to all variables and flip the carrot-looking thingy upside down.
+</p>
+
+<p>
+Quantifiers and Predicates
+</p>
+<ul class="org-ul">
+<li>Since propositions have practical limitations, namely dealing with large data sets and general statements, we use quantifiers instead.</li>
+<li id="∃">&ldquo;there exists&rdquo;
+<ul class="org-ul">
+<li>existential quantifier</li>
+</ul></li>
+<li id="∀">&ldquo;for all&rdquo; or &ldquo;for every&rdquo;
+<ul class="org-ul">
+<li>universal quantifier</li>
+</ul></li>
+
+<li id="Predicate">boolean expression containing parameters of unknown value.
+<ul class="org-ul">
+<li>typical convention: predicates are usually uppercase and propositions are usually lowercase.</li>
+</ul></li>
+
+<li id="⋿">&ldquo;member [variable] in set [variable]&rdquo;</li>
+</ul>
+
+<p>
+DeMorgan&rsquo;s Law (quantifiers)
+-(∃x p(x)) = ∀x (-p(x))
+-(∀x p(x)) = ∃x (-p(x))
+</p>
+
+<p>
+Nested Quantifiers
+</p>
+<ul class="org-ul">
+<li>it&rsquo;s exactly what it sounds like.</li>
+<li>basically, you can have quantifiers inside of quantifier statements.</li>
+<li>the order of quantifiers does not matter if the statement only has existential or universal quantifiers.
+<ul class="org-ul">
+<li>ex: ∀x∀y∀z = ∀y∀z∀x = ∀z∀x∀y</li>
+<li>ex: ∃x∃y∃z = ∃y∃z∃x = ∃z∃x∃y</li>
+</ul></li>
+</ul>
+
+<p>
+∀x ⋿ S p(x)
+</p>
+<ul class="org-ul">
+<li>If set S is empty, the value of this statement must be True because you cannot find any elements in the set that make this statement False.</li>
+</ul>
+
+<p>
+∃x ⋿ S p(x)
+</p>
+<ul class="org-ul">
+<li>If set S is empty, the value of this statement must be False because there are no elements in the set that make the statement True.</li>
+</ul>
+
+<p>
+English to Logic and Logic to English translation is also talked about in this lecture.
+</p>
+</div>
+</div>
+<div id="outline-container-orgad0b335" class="outline-2">
+<h2 id="orgad0b335"><span class="section-number-2">3.</span> lecture3</h2>
+<div class="outline-text-2" id="text-3">
+<dl class="org-dl">
+<dt>Argument</dt><dd>sequence of premises leading to a conclusion.
+<ul class="org-ul">
+<li>valid if the truth of all the premises necessarily imply the truth of the conclusion.</li>
+</ul></dd>
+<dt>Form (of an argument)</dt><dd>describes the sequences of premises.
+<ul class="org-ul">
+<li>must use valid inference rules to prove the argument is valid.</li>
+</ul></dd>
+<dt>∴</dt><dd>&ldquo;therefore&rdquo;</dd>
+</dl>
+
+<p>
+Propositional Rules of Inference
+</p>
+
+<p>
+Modus Ponens
+</p>
+<ul class="org-ul">
+<li>p ^ (p -&gt; q) = q</li>
+<li>if p and p -&gt; q are True, then q must be True.</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">p</th>
+<th scope="col" class="org-right">q</th>
+<th scope="col" class="org-right">p -&gt; q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>4th row demonstrates modus ponens.</li>
+</ul>
+
+<p>
+Modus Tollens
+</p>
+<ul class="org-ul">
+<li>-q ^ (p -&gt; q) = -p</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">p</th>
+<th scope="col" class="org-right">q</th>
+<th scope="col" class="org-right">p -&gt; q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>1st row demonstrates modus tollens.</li>
+</ul>
+
+<p>
+Hypothetical Syllogism
+</p>
+<ul class="org-ul">
+<li>(p -&gt; q) ^ (q -&gt; r) = p -&gt; r</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">p</th>
+<th scope="col" class="org-right">q</th>
+<th scope="col" class="org-right">r</th>
+<th scope="col" class="org-right">p -&gt; q</th>
+<th scope="col" class="org-right">q -&gt; r</th>
+<th scope="col" class="org-right">p -&gt; r</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>1st, 2nd, 4th, and 8th rows demonstrate hypothetical syllogism.</li>
+</ul>
+
+<p>
+Disjunctive Syllogism
+</p>
+<ul class="org-ul">
+<li>(p v q) ^ -p = q</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">p</th>
+<th scope="col" class="org-right">q</th>
+<th scope="col" class="org-right">p v q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>2nd row demonstrates disjunctive syllogism.</li>
+</ul>
+
+<p>
+Addition
+</p>
+<ul class="org-ul">
+<li>p = (p v q)</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">p</th>
+<th scope="col" class="org-right">q</th>
+<th scope="col" class="org-right">p v q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Simplification
+</p>
+<ul class="org-ul">
+<li>(p ^ q) = p</li>
+<li>(p ^ q) = q</li>
+</ul>
+
+<p>
+Conjunction
+</p>
+<ul class="org-ul">
+<li>p ^ q = (p ^ q)</li>
+<li>very literal.</li>
+</ul>
+
+<p>
+Resolution
+</p>
+<ul class="org-ul">
+<li>(p v q) ^ (p v r) = (q v r)</li>
+</ul>
+
+<p>
+Truth table:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">p</th>
+<th scope="col" class="org-right">q</th>
+<th scope="col" class="org-right">r</th>
+<th scope="col" class="org-right">p v q</th>
+<th scope="col" class="org-right">-p v r</th>
+<th scope="col" class="org-right">q v r</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>3rd, 4th, 6th, and 8th rows demonstrate resolution.</li>
+
+<li id="Fallicies">invalid argument where tautology is wrongly replaced with contingency as if it were always True. (incorrect application of an inference rule).
+<ul class="org-ul">
+<li>ex: ((p -&gt; q) ^ q) -&gt; p
+<ul class="org-ul">
+<li>This is a contingency, not a tautology.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>
+Rules of Inference in Quantified Statements
+</p>
+
+<p>
+Universal Instantiation
+</p>
+<ul class="org-ul">
+<li>(∀x ⋿ H M(x)) ^ (s ⋿ H) = M(s)
+<ul class="org-ul">
+<li>For every element x in set H, M(x). s is an element in set H. Therefore, M(s) holds True.</li>
+</ul></li>
+</ul>
+
+<p>
+Universal Generalization
+</p>
+<ul class="org-ul">
+<li>Given any arbitrary constant number c ⋿ S. If we can prove that P(c) is True, then ∀x ⋿ S P(x).</li>
+</ul>
+
+<p>
+Existential Instantiation
+</p>
+<ul class="org-ul">
+<li>Given ∃x ⋿ S P(x). Let c be one such x. Therefore, P(c).</li>
+</ul>
+
+<p>
+Existential Generalization
+</p>
+<ul class="org-ul">
+<li>Find c ⋿ S such that P(c) is True. Then ∃x ⋿ S P(x).</li>
+</ul>
+
+<p>
+Universal Modus Ponens
+</p>
+<ul class="org-ul">
+<li>∀x ⋿ S P(x) -&gt; Q(x)</li>
+<li>c ⋿ S</li>
+<li>P(c)</li>
+<li>Therefore, Q(c).</li>
+</ul>
+
+<p>
+Universal Modus Tollens
+</p>
+<ul class="org-ul">
+<li>∀x ⋿ S P(x) -&gt; Q(x)</li>
+<li>c ⋿ S</li>
+<li>-Q(c)</li>
+<li>Therefore, -P(c).</li>
+</ul>
+
+<p>
+Introduction to Proofs
+</p>
+<ul class="org-ul">
+<li>There are formal and informal proofs.</li>
+<li id="Theorem">formal statement that has been proven (or is currently proven) True.
+<ul class="org-ul">
+<li>Thm. is sometimes short for theorem.</li>
+<li id="lemma">small proof or subproof.</li>
+<li id="corollary">&ldquo;obvious&rdquo; consequence of a just-proved theorem.</li>
+<li id="conjecture">statement believed to be True, but not yet proven.</li>
+</ul></li>
+<li id="Direct proof">uses sequence of implications, previously proven theorems, to move directly from assumptions to conclusion.</li>
+<li id="Proof by contrapositive">Using -q -&gt; -p to prove that p -&gt; q.
+<ul class="org-ul">
+<li>reminder: propositional contrapositive says that p -&gt; q = -q -&gt; -p.</li>
+</ul></li>
+<li id="Trivial/Vacuous proof">Find a case where the hypothesis (AKA antecedant) is False, and show that False implies anything.</li>
+<li id="Proof by contradiction">Want p -&gt; q. Find statement q that is False an then prove that -p -&gt; q = -q -&gt; p (by contrapositive).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2fe8571" class="outline-2">
+<h2 id="org2fe8571"><span class="section-number-2">4.</span> lecture4</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Different Proof Methods and Strategies:
+</p>
+<ul class="org-ul">
+<li>proof by cases
+<ul class="org-ul">
+<li>(p1 v p2 v p3 v &#x2026;) -&gt; q = (p1 -&gt; q) v (p2 -&gt; q) v (p3 -&gt; q) v &#x2026;</li>
+<li>explicit exhaustive:
+<ul class="org-ul">
+<li>if there are a small number of possible cases, exhaust all of them to show the proof is True.</li>
+</ul></li>
+<li>exhaustive &ldquo;abstract&rdquo;:
+<ul class="org-ul">
+<li>consider one possible case for each range that could potentially produce a different result.</li>
+</ul></li>
+</ul></li>
+<li>existence proofs
+<ol class="org-ol">
+<li>constructive: find an explicit case that works. -&gt; 1 exists.</li>
+<li>nonconstructive: prove something exists, even though you can&rsquo;t name it. (unknown value)</li>
+</ol></li>
+</ul>
+
+<p>
+Ex of nonconstructive existence proof:
+∃(x, y) that are both irrational such that x<sup>y</sup> is rational.
+Proof: Consider √2<sup>(√2)</sup>. This expression can either have a rational or irrational result.
+</p>
+<ol class="org-ol">
+<li>If √2<sup>(√2)</sup> is rational, set x = y = √2, and you&rsquo;re done.</li>
+<li>If √2<sup>(√2)</sup> is irrational, then set x = √2<sup>(√2)</sup> and y = (√2). Therefore, x<sup>y</sup> = (√2<sup>(√2)</sup>)<sup>(√2)</sup> = 2. 2 is a rational number, so you&rsquo;re done.</li>
+</ol>
+
+<p>
+Existence and Uniqueness
+</p>
+<ol class="org-ol">
+<li>Existence of an x such that P(x) holds.</li>
+<li>Either:
+<ul class="org-ul">
+<li>∀y ≠ x -P(y)</li>
+<li>∃y P(y) y = x</li>
+</ul></li>
+</ol>
+
+<p>
+Backwards Reasoning
+</p>
+<ul class="org-ul">
+<li>Usually doesn&rsquo;t provide the proof, but leads to ideas that can be used for a proof.</li>
+<li>Note: If any step in backwards reasoning leads to an implication, the steps cannot be directly reversed back to the theorem.</li>
+</ul>
+
+<p>
+Looking for Counterexamples
+</p>
+<ol class="org-ol">
+<li>Maybe the theorem is wrong.</li>
+<li>Might not find any counterexamples, but it may give ideas/inspiration that lead to the proof.</li>
+<li>Note: Lack of counterexamples isn&rsquo;t proof.</li>
+</ol>
+
+<p>
+Aside: Types of Logical Inference (Example)
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">universal statement</td>
+<td class="org-left">All men are mortal</td>
+<td class="org-left">induction</td>
+</tr>
+
+<tr>
+<td class="org-left">universal instantiation</td>
+<td class="org-left">Socrates is a man</td>
+<td class="org-left">adduction</td>
+</tr>
+
+<tr>
+<td class="org-left">syllogism</td>
+<td class="org-left">Socrates is mortal</td>
+<td class="org-left">deduction</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>If the conclusion &ldquo;All men are mortal&rdquo; is derived from the other 2 statements, it&rsquo;s called induction.</li>
+<li>If the conclusion &ldquo;Socrates is a man&rdquo; is derived from the other 2 statements, it&rsquo;s called adduction.</li>
+<li>If the conclusion &ldquo;Socrates is mortal&rdquo; is derived from the other t2 statements, it&rsquo;s called deduction.</li>
+</ul>
+
+<p>
+&ldquo;Levels&rdquo; of Proofs
+</p>
+<ul class="org-ul">
+<li>Formal vs. Informal</li>
+<li>Rigorous vs. Non-rigorous</li>
+
+<li id="conjecture">a claim/inference without any proof.</li>
+</ul>
+
+<p>
+Set Theory:
+</p>
+<dl class="org-dl">
+<dt>set</dt><dd>unordered collection of things/elements/members/objects.
+<ul class="org-ul">
+<li>ex: vowels = V = {a, e, i, o, u}</li>
+<li>ex: natural numbers = {1, 2, 3, 4, 5, &#x2026;}</li>
+<li>ex: integers = {&#x2026;, -3, -2, -1, 0, 1, 2, 3, &#x2026;}</li>
+</ul></dd>
+
+<dt>membership symbol</dt><dd>⋿
+<ul class="org-ul">
+<li>ex: a ⋿ A means &ldquo;element a is in the set A&rdquo;</li>
+<li>the typical convention is for elements to be lowercase and sets to be uppercase.</li>
+</ul></dd>
+
+<dt>subset symbol</dt><dd>⊆
+<ul class="org-ul">
+<li>ex: A ⊆ B means &ldquo;set A is a subset of set B if and only if ∀x ⋿ A, x ⋿ B&rdquo;</li>
+<li>for this particular subset symbol, A and B can be the same set.</li>
+</ul></dd>
+
+<dt>proper subset symbol</dt><dd>⊂
+<ul class="org-ul">
+<li>ex: A ⊂ B means (A ⊆ B) ^ (A ≠ B).</li>
+<li>for this particular subset symbol, A and B cannot be the same set.</li>
+</ul></dd>
+</dl>
+
+<p>
+Venn Diagrams can be used to visually show different set operators.
+</p>
+
+<dl class="org-dl">
+<dt>empty set (null)</dt><dd>∅
+<ul class="org-ul">
+<li>an empty set can also be shown like this: {}</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgb2bc2d6" class="outline-2">
+<h2 id="orgb2bc2d6"><span class="section-number-2">5.</span> lecture5</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Venn diagrams can be useful for visualizing set operations.
+</p>
+
+<dl class="org-dl">
+<dt>cardinality of set S</dt><dd>|S|
+<ul class="org-ul">
+<li>number of elements in the set S.</li>
+<li>note: |S| ≥ 0 and can be finite or infinite.</li>
+</ul></dd>
+</dl>
+
+<p>
+Power set of set S refers to the set of all subsets of S.
+</p>
+<ul class="org-ul">
+<li>written as P(S).</li>
+<li>ex: P({a, b, c}) = {∅, {a}, {b}, {c}, {a, b}, {a, c}, {b, c}}</li>
+</ul>
+
+<p>
+Ordered n-tuples
+</p>
+<ul class="org-ul">
+<li>an ordered list (n-tuple) is denoted with parentheses: (a1, a2, a3, &#x2026; an).</li>
+<li>2 ordered lists are equal if and only if they contain the same elements in the same order.</li>
+</ul>
+
+<p>
+Let A, B be sets.
+</p>
+<dl class="org-dl">
+<dt>cartesian product</dt><dd>A x B
+<ul class="org-ul">
+<li>{(a, b) | a ⋿ A ^ b ⋿ B}</li>
+<li>can be extended to an arbitrary number of sets.</li>
+<li id="|">&ldquo;truth set&rdquo; or &ldquo;such that&rdquo;</li>
+</ul></dd>
+
+<dt>union</dt><dd>A ∪ B
+<ul class="org-ul">
+<li>{x | x ⋿ A v x ⋿ B}</li>
+</ul></dd>
+<dt>intersection</dt><dd>A ∩ B
+<ul class="org-ul">
+<li>{x | x ⋿ A ^ x ⋿ B}</li>
+<li>disjoint if and only if A ∩ B = ∅</li>
+</ul></dd>
+</dl>
+
+<p>
+Set subtraction
+</p>
+<ul class="org-ul">
+<li>A \ B or A - B</li>
+<li>{x | x ⋿ A ^ x ∌ B}</li>
+<li>start with A, remove all members of B.</li>
+</ul>
+
+<p>
+Let universe = U.
+</p>
+<ul class="org-ul">
+<li>U \ A = A complement, &ldquo;complement of A with respect to U&rdquo;</li>
+</ul>
+
+<p>
+Tons of Set Identities out there. (more than just these few examples)
+</p>
+<ul class="org-ul">
+<li>ex: A complement complement = A.</li>
+<li>ex: A ∪ ∅ = A.</li>
+<li>ex: A ∩ ∅ = ∅.</li>
+</ul>
+
+<p>
+DeMorgan&rsquo;s Law
+</p>
+<ul class="org-ul">
+<li>(A ∪ B) complement = (A complement) ∩ (B complement)</li>
+<li>(A ∩ B) complement = (A complement) ∪ (B complement)</li>
+</ul>
+
+<p>
+Functions: Let A, B be non-empty sets.
+</p>
+<ul class="org-ul">
+<li>function f from the set A to B, f: A -&gt; B, takes each element of A to exactly 1 element of B.</li>
+<li>if a ⋿ A and b ⋿ B, then f(a) = b. Note that multiple members of set A can go to the same b ⋿ B, but each a ⋿ A has only one value.</li>
+<li id="domain">all values from set A.</li>
+<li id="codomain">all values from set B.</li>
+</ul>
+
+<p>
+Let a be a member of set A and B be a member of set B.
+</p>
+<ul class="org-ul">
+<li>b is the image of a under map f. (output)</li>
+<li>a is the preimage of b. (input)</li>
+<li id="set image">{b ⋿ B | ∃a ⋿ A such that f(a) = b} = f(A)
+<ul class="org-ul">
+<li>ex: Let the domain and codomain be the set of all real numbers. If f is the absolute value, then the range is the set of all positive numbers including 0.</li>
+</ul></li>
+</ul>
+
+<p>
+function f is 1 to 1 (injective/injection) if and only if f(a1) = f(a2) -&gt; a1 = a2.
+</p>
+<ul class="org-ul">
+<li>AKA each b has at most 1 preimage.</li>
+<li>very similar to the horizontal line test for function graphs.</li>
+</ul>
+
+<p>
+A -&gt; B is onto (surjective/surjection) if and only if ∀b ⋿ B ∃a ⋿ A such that f(a) = b.
+</p>
+<ul class="org-ul">
+<li>codomain = range. All points in B are hit by some member of A.</li>
+</ul>
+
+<p>
+Ex: Let A, B be the set of all real numbers. Therefore, f(x) = x<sup>2</sup> is 1 to 1, but not onto.
+</p>
+
+<p>
+f: A -&gt; B is a bijection if and only if f is both 1 to 1 and onto.
+</p>
+<ul class="org-ul">
+<li>ex: f(x) x<sup>3</sup> is a bijection.</li>
+<li>every element b ⋿ B has exactly one pre-image a ⋿ A that it came from.</li>
+</ul>
+
+<p>
+Inverse
+</p>
+<ul class="org-ul">
+<li>let f<sup>-1</sup>(b) = a be the element of a that maps to b under f.</li>
+<li>therefore, f<sup>-1</sup>(B) = A is the inverse function of f.</li>
+<li>only the case when f is bijective.</li>
+<li>from this, f(f<sup>-1</sup>(b)) = b and f<sup>-1</sup>(f(a)) = a.
+<ul class="org-ul">
+<li>also written as: (f ○ f<sup>-1</sup>)(b) = b and (f<sup>-1</sup> ○ f)(a) = a.</li>
+</ul></li>
+</ul>
+
+<p>
+Let g: A -&gt; B, f: B -&gt; C. Therefore, (f ○ g)(a) = f(g(a)) = c.
+</p>
+<ul class="org-ul">
+<li>graph can be used to make this clearer.</li>
+</ul>
+
+<p>
+Relations
+</p>
+<ul class="org-ul">
+<li>let A, B be sets.
+<ul class="org-ul">
+<li>a relation R ⊆ A x B (cartesian product).</li>
+<li>a R b = &ldquo;a is related to b&rdquo; under the relation R if (a, b) ⋿ R.</li>
+</ul></li>
+</ul>
+
+<p>
+Is R a function?
+</p>
+<ul class="org-ul">
+<li>ex: Let A = {students at a college} and B = {classes at this college}. Let s ⋿ A and c ⋿ B.</li>
+<li>every function can be described as a relation, but a relation cannot always be described as a function.</li>
+<li>in this example, R is not a function because each student can take more than 1 class.
+<ul class="org-ul">
+<li>recall that a function must have exactly 1 element of b mapped from 1 (or more) elements of a.</li>
+</ul></li>
+<li>this example demonstrates a many to many mapping since a student can take multiple classes and a class can have multiple students enrolled in it.</li>
+</ul>
+
+<p>
+Example
+</p>
+<ul class="org-ul">
+<li>let A, B be the set of all integers and R be &ldquo;&lt;.&rdquo;</li>
+<li>(3, 7) ⋿ R because 3 is less than 7.</li>
+<li>(12, 7) ∌ R because 12 is not less than 7.</li>
+</ul>
+
+<p>
+Relations can be represented using binary (Boolean) matrices.
+</p>
+<ul class="org-ul">
+<li>Example:</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">a</td>
+<td class="org-left">b</td>
+<td class="org-left">c</td>
+<td class="org-left">d</td>
+<td class="org-left">e</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">x</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">x</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">x</td>
+<td class="org-left">x</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">x</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">x</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">x</td>
+<td class="org-left">x</td>
+<td class="org-left">x</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>(2, b) ⋿ R.
+<ul class="org-ul">
+<li>can also be written as 2 R b.</li>
+</ul></li>
+<li>(3, d) ⋿ R.
+<ul class="org-ul">
+<li>can also be written as 3 R d.</li>
+</ul></li>
+</ul>
+
+<p>
+Let |A| = n, |B| = m.
+</p>
+<ul class="org-ul">
+<li>the matrix representation of any R on A x B has n rows and m columns.</li>
+<li>how many possible relations are there for A x B?
+<ul class="org-ul">
+<li>2<sup>(nm)</sup></li>
+</ul></li>
+</ul>
+
+<p>
+Properties of self-relations
+</p>
+<dl class="org-dl">
+<dt>R is reflexive</dt><dd>(a, a) ⋿ R ∀ a ⋿ A.
+<ul class="org-ul">
+<li>diagonal of matrix must always evaluate to 1 (True).</li>
+</ul></dd>
+</dl>
+
+<p>
+Example (1 is denoted by x):
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">1</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">x</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">x</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">x</td>
+</tr>
+</tbody>
+</table>
+
+<dl class="org-dl">
+<dt>R is symmetric</dt><dd>∀a, b ⋿ A ((a, b) ⋿ R if and only if (b, a) ⋿ R).
+<ul class="org-ul">
+<li>transpose along the diagonal of matrix.</li>
+</ul></dd>
+</dl>
+
+<p>
+Example:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-left">2</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">x</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">x</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>both (2, 1) and (1, 2) are in the relation R. therefore, R is symmetric.</li>
+
+<li id="R is antisymmetric">∀a, b ⋿ A ((a, b) ⋿ R ^ (b, a) ⋿ R) -&gt; a = b.
+<ul class="org-ul">
+<li>contrapositive: a ≠ b -&gt; (a, b) ∌ R v (b, a) ⋿ R.</li>
+<li>further simplified to: a ≠ b -&gt; (a is not related to b) v (b is not related to a)</li>
+<li>at most 1 of (a, b) or (b, a) can be True.</li>
+<li>all elements along the diagonal of the matrix must be False.</li>
+<li>is not the opposite of symmetric.</li>
+</ul></li>
+</ul>
+
+<p>
+Example:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">x</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">x</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">x</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>(2, 1) is 1, while (1, 2) is 0.</li>
+<li>(3, 1) is 1, while (1, 3) is 0.</li>
+<li>(2, 3) is 1, while (3, 2) is 0.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga5b6ea3" class="outline-2">
+<h2 id="orga5b6ea3"><span class="section-number-2">6.</span> lecture6</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Transitive Property on Relations
+</p>
+<ul class="org-ul">
+<li>(a, b) ⋿ R ^ (b, c) ⋿ R -&gt; (a, c) ⋿ R</li>
+<li>ex: R is &ldquo;&lt;&rdquo; for all integers.</li>
+<li>ex: R is &ldquo;=&rdquo; for all integers.</li>
+</ul>
+
+<p>
+Combining Relations: Subsets of A x B.
+</p>
+<ul class="org-ul">
+<li>Apply set operations: ∪, ∩, etc.</li>
+<li>ex: Let A = {all students} and C = {all courses}. Let R1 = &ldquo;has taken&rdquo; and R2 = &ldquo;needs in order to graduate&rdquo;. Therefore:
+<ul class="org-ul">
+<li>R1 ∪ R2 = &ldquo;any class taken + all classes needed to graduate&rdquo;, where + refers to &ldquo;or&rdquo;</li>
+<li>R1 ∩ R2 = &ldquo;necessary courses already fulfilled&rdquo;</li>
+<li>R1 \ R2 = &ldquo;classes taken that aren&rsquo;t needed/required (elective courses)&rdquo;</li>
+<li>R2 \ R1 = &ldquo;remaining classes needed to graduate&rdquo;</li>
+<li>R1 ⊕ R2 = &ldquo;elective classes + remaining classes needed to graduate&rdquo;
+<ul class="org-ul">
+<li>Same as (R1 \ R2) ∪ (R2 \ R1)</li>
+</ul></li>
+</ul></li>
+
+<li>ex: Let R1 and R2 apply to all integers, where R1 = &ldquo;&lt;&rdquo; and R2 = &ldquo;&gt;&rdquo;. Let i and j each be some integer. Therefore:
+<ul class="org-ul">
+<li>R1 ∪ R2 = ≠ = (i &gt; j) v (i &lt; j), i ≠ j</li>
+<li>R1 ∩ R2 = (i &gt; j) ^ (i &lt; j) = ∅</li>
+<li>R1 \ R2 = R1</li>
+<li>R2 \ R1 = R2</li>
+<li>R1 ⊕ R2 = R1 ∪ R2 = ≠</li>
+</ul></li>
+</ul>
+
+<p>
+Composition of Relations
+</p>
+<ul class="org-ul">
+<li>let R ⊆ A x B and S ⊆ B x C. Therefore, S ○ R = Relation where R is applied first, then S.</li>
+<li>formally, S ○ R = {(a, c) | a ⋿ A ^ c ⋿ C ^ ∃b ⋿ B ((a, b) ⋿ R ^ (b, c) ⋿ S)}
+<ul class="org-ul">
+<li>AKA S ○ R is the set of all (a, c) such that a is in the set A and c is in the set C and there exists a member b in the set B where (a, b) is in the relation R and (b, c) is in the relation S.</li>
+</ul></li>
+</ul>
+
+<p>
+Notation: R ○ R can also be written as R<sup>2</sup>. Therefore, R ○ R ○ &#x2026; ○ R = R<sup>n</sup>, where n is some integer.
+</p>
+<ul class="org-ul">
+<li>can be defined recursively:
+<ul class="org-ul">
+<li>R<sup>1</sup> = R. Therefore:</li>
+<li>R<sup>(k+1)</sup> = R<sup>k</sup> ○ R<sup>1</sup> = R<sup>k</sup> ○ R.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge9c8bf0" class="outline-2">
+<h2 id="orge9c8bf0"><span class="section-number-2">7.</span> lecture7</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Closure of Relations
+</p>
+<ul class="org-ul">
+<li>closure of relation R under property P is the smallest new relation S that both contains R and has property P.
+<ul class="org-ul">
+<li>similar to open vs. closed intervals.</li>
+<li>&ldquo;smallest&rdquo; refers to adding the fewest new elements.</li>
+</ul></li>
+<li>ex: Let R on all positive integers be &ldquo;&lt;&rdquo; and P = &ldquo;reflexive&rdquo;.
+<ul class="org-ul">
+<li>if R is not yet reflexive, to create R ⊆ S that is reflexive, add 1s to the diagonal of the matrix.</li>
+<li>S is now &ldquo;≤&rdquo;.</li>
+</ul></li>
+</ul>
+
+<p>
+Relation R (before):
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-left">2</td>
+<td class="org-left">3</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">x</td>
+<td class="org-left">x</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">x</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Relation R (after):
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">1</td>
+<td class="org-left">2</td>
+<td class="org-left">3</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">x</td>
+<td class="org-left">x</td>
+<td class="org-left">x</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">x</td>
+<td class="org-left">x</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">x</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Transitive Closure
+</p>
+<ul class="org-ul">
+<li>digression = directed graphs/networks/digraphs.</li>
+<li>letters are called nodes. (members of set A where R ⊆ A x A)</li>
+<li>arrows are called edges.</li>
+<li>if R is symmetric, every edge traverses both ways.
+<ul class="org-ul">
+<li>therefore, the graph is &ldquo;undirected&rdquo;.</li>
+</ul></li>
+<li>kind of like a mesage being passed through a computer network via directed links. the longest non-repeating path has length n - 1.</li>
+<li>you probably want to search up what it looks like for better visualization.</li>
+</ul>
+
+<p>
+Formal Definition of Closure
+</p>
+<ul class="org-ul">
+<li>let R be a relation on A x A and P be a property (reflexive, symmetric, etc.).</li>
+<li>if there exists a relation R ⊆ S and S satisfies P, then S is the smallest closure of R under P. in other words, S ⊆ T such that R ⊆ T and T has the property P. therefore, the following Boolean expression holds:</li>
+</ul>
+
+<p>
+∃s (P(s) ^ (∀T ((R ⊆ T ^ P(T)) -&gt; S ⊆ T))) ⊆ A x A
+</p>
+
+<ul class="org-ul">
+<li>if s exists, it is unique.</li>
+</ul>
+
+<p>
+Paths on Digraphs
+</p>
+<ul class="org-ul">
+<li>number of edges = length of path.</li>
+<li>number of nodes = length of path + 1.</li>
+<li>path from x to itself using 0 edges has a length of 0.
+<ul class="org-ul">
+<li>if x has a self loop, then paths of every length (x to x) exists.</li>
+</ul></li>
+<li>path is not a set of nodes. rather, it&rsquo;s an ordered n-tuple where length = (n - 1).</li>
+<li>if (a0, &#x2026;, an) is a path of length n, it&rsquo;s called a cycle.
+<ul class="org-ul">
+<li>if a cycle touches every node in a graph exactly once, it&rsquo;s called a circuit.</li>
+</ul></li>
+</ul>
+
+<p>
+Equivalence Relations
+</p>
+<ul class="org-ul">
+<li>relation R on A x A is an equivalence relation if R is reflexive, symmetric, and transitive.</li>
+<li>divides the universe into partitions Ai that are mutually exclusive (non-overlapping/disjoint) and cover everything.</li>
+<li>Ai ∩ Aj = ∅, i ≠ j.</li>
+</ul>
+
+<p>
+a ~ b
+</p>
+<ul class="org-ul">
+<li>if a and b are both in Ai, then a is equivalent to b.</li>
+<li>denoted using ~.</li>
+<li>[a] = {b ⋿ A | (a, b) ⋿ R} = {b | a ~ b}.
+<ul class="org-ul">
+<li>in other words, [a] refers to the set of all b such that a is equivalent to b.</li>
+</ul></li>
+<li>note: symmetry has no direction. it simply implies that a and b are related.</li>
+
+<li>ex: let R on all positive integers be {(i, j) | i mod 4 = j mod 4}.
+<ul class="org-ul">
+<li>mod = modulo operator = remainder when two values are divided.</li>
+<li>is R an equivalence relation?
+<ol class="org-ol">
+<li>reflexive? yes, because 8 mod 4 = 8 mod 4 and 8 mod 4 = 8 mod 4 are both in the relation.</li>
+<li>symmetric? yes, because 8 mod 4 = 7 mod 4 is not in the relation. therefore, 7 mod 4 = 8 mod 4 is also not in relation.</li>
+<li>transitive? yes, because 8 mod 4 = 17 mod 4 is not in the relation and 17 mod 4 = 28 mod 4 is not in the relation. therefore, 8 mod 4 = 28 mod 4 is not in the relation.</li>
+</ol></li>
+<li>therefore, R is an equivalence relation.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org07b44d9" class="outline-2">
+<h2 id="org07b44d9"><span class="section-number-2">8.</span> lecture8</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Partial Orderings
+</p>
+<ul class="org-ul">
+<li>given relation R on A (also known as a poset, short for partially ordered set), R is a partial ordering of A if it&rsquo;s reflexive, antisymmetric, and transitive.</li>
+<li>ex: ≥ on all integers.
+<ul class="org-ul">
+<li>reflexive? yes, because a ≥ a.</li>
+<li>antisymmetric? yes, because (a ≥ b ^ b ≥ a -&gt; a = b).</li>
+<li>transitive? yes, because a ≥ b ≥ c -&gt; a ≥ c.</li>
+</ul></li>
+<li>therefore, R is a poset.</li>
+<li>for partial orderings, some pairs don&rsquo;t matter (are unordered) while other ones do.
+<ul class="org-ul">
+<li>if R on A is a poset but every pair exists in at least 1 direction, then R is a total ordering (AKA a linearly ordered chain).</li>
+<li>if R on A is a total ordering and every non-empty subset of A has a least (smallest/earliest/largest/biggest) element, then R on A is well-ordered.</li>
+<li>ex: ≤ on all integers is total ordered, but not well ordered.</li>
+</ul></li>
+</ul>
+
+<p>
+Lexicographic (Dictionary) Ordering
+</p>
+<ul class="org-ul">
+<li>let a and b be ordered pairs (a1, a2), (b1, b2).</li>
+<li>then, (a1, a2) &lt; (b1, b2) if (a1 &lt; b1) v (a1 = b1 ^ a2 &lt; b2).</li>
+<li>can be generalized to larger tuples, with the additional rule that shorter words always come before longer words if one word is a &ldquo;pre-string&rdquo; of the other word.</li>
+</ul>
+
+<p>
+Hasse Diagram of Posets (probably want to search it up for visualization)
+</p>
+<ul class="org-ul">
+<li>draw &ldquo;up&rdquo; (smallest at bottom).</li>
+<li>no arrows needed, just lines. height implies order/hierarchy.</li>
+<li>a minimal element has no elements smaller than itself.</li>
+<li>a maximal element has no elements greater than itself.</li>
+<li>element a is called &ldquo;least&rdquo; if a ≤ b ∀b ⋿ A.
+<ul class="org-ul">
+<li>can only be one in a set.</li>
+<li>if there are multiple elements that could potentially be &ldquo;least&rdquo;, then there is no least element for the set.</li>
+</ul></li>
+<li>element a is called &ldquo;greatest&rdquo; if b ≤ a ∀b ⋿ A.
+<ul class="org-ul">
+<li>can only be one in a set.</li>
+<li>if there are multiple elements that could potentially be &ldquo;greatest&rdquo;, then there is no greatest element for the set.</li>
+</ul></li>
+</ul>
+
+<p>
+Tightest Bounds
+</p>
+<ul class="org-ul">
+<li>least upper bound (LUB) is the smallest of all upper bounds on subset S.
+<ul class="org-ul">
+<li>can only be one in a subset.</li>
+</ul></li>
+<li>greatest lower bound (GLB) is the largest of all lower bounds on subset S.
+<ul class="org-ul">
+<li>can only be one in a subset.</li>
+</ul></li>
+</ul>
+
+<p>
+Topological Sorting
+</p>
+<ul class="org-ul">
+<li>create linear listing of poset satisfying poset relation.</li>
+<li>list elements of Hasse diagram upwards, but elements that are on the &ldquo;same level&rdquo; can be interchanged. (also can be in parallel).</li>
+<li>ex: 1, 2, 3, 4, 6, 8, 12, 24.
+<ul class="org-ul">
+<li>if 2 and 3, 4 and 6, 8 and 12 were on the &ldquo;same level&rdquo; then the listing could also be rewritten as: 1, 3, 2, 6, 4, 12, 8, 24.</li>
+</ul></li>
+</ul>
+
+<p>
+n-ary Relations (Databases)
+</p>
+<ul class="org-ul">
+<li>given A1, A2, &#x2026;, An (domains), relation R ⊆ A1 x A2 x &#x2026; x An, and member (a1, a2, &#x2026;, an):
+<ul class="org-ul">
+<li>n is the degree (in databases, it refers to the number of columns in a table)</li>
+<li>ex: departure screen at an airport might have columns for departure airport, flight number, arrival airport, airline, departure time, and gate number.
+<ul class="org-ul">
+<li>this is a 6-ary relation because n = 6.</li>
+</ul></li>
+</ul></li>
+<li>cross reference (join) allows for searching through multiple n-ary relations if they share the same fields.</li>
+<li>primary key = unique field in a database.
+<ul class="org-ul">
+<li>ex: student ID and SSN.</li>
+</ul></li>
+<li>composite key = keys that are used to attempt to uniquely identify an entry using multiple non-primary keys.
+<ul class="org-ul">
+<li>ex: name and birthdate.</li>
+</ul></li>
+<li>projection = eliminating certain fields, projecting only remaining fields.
+<ul class="org-ul">
+<li>used to search based on specific criteria in a subset of fields in a database.</li>
+<li>on websites, there are often boxes that you can checkmark so that only certain field apply.</li>
+</ul></li>
+</ul>
+
+<p>
+Boolean Algebra
+</p>
+<ul class="org-ul">
+<li>different notation:
+<ul class="org-ul">
+<li>T = 1.</li>
+<li>F = 0.</li>
+<li>^ = multiplication.</li>
+<li>v = addition.</li>
+<li>- = (variable with a line above the variable to denote variable complement)</li>
+</ul></li>
+<li>every rule from number algebra applies.
+<ul class="org-ul">
+<li>precedence = multiplication comes before addition. complement is applied immediately.</li>
+<li>parentheses can be used for more clarity.</li>
+</ul></li>
+</ul>
+
+<p>
+Boolean Functions
+</p>
+<ul class="org-ul">
+<li>ex: F(x, y, z) = xy + z.</li>
+<li>given n bits of input, how many possible Boolean functions exist?
+<ul class="org-ul">
+<li>if there are n bits of input, then there are 2<sup>n</sup> rows.</li>
+<li>therefore, the number of possible functions is 2<sup>(number of rows)</sup> = 2<sup>(2<sup>(n)</sup>)</sup></li>
+</ul></li>
+
+<li>literal = any Boolean variable or its complement.</li>
+<li>given literals x1, x2, &#x2026;, xn, a minterm is any product containing each literal or its complement exactly once.</li>
+<li>a Boolean sum of minterms is called sum of products (AKA disjunctive normal form, or DNF).</li>
+<li>every Boolean function can be expressed as a sum of minterms.
+<ul class="org-ul">
+<li>all minterms for a Boolean function correspond to a value of 1 in the function&rsquo;s truth table.</li>
+<li>ex:</li>
+</ul></li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">x</td>
+<td class="org-right">y</td>
+<td class="org-right">z</td>
+<td class="org-right">(x + y)(-z)</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>(x + y)(-z) in minterm form is: (x)(y)(-z) + (x)(-y)(-z) + (-x)(y)(-z)
+<ul class="org-ul">
+<li>each minterm corresponds to a value of 1 in the truth table.</li>
+<li>010 = (-x)(y)(-z)</li>
+<li>100 = (x)(-y)(-z)</li>
+<li>110 = (x)(y)(-z)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf045dd6" class="outline-2">
+<h2 id="orgf045dd6"><span class="section-number-2">9.</span> lecture9</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Logic Gates (probably want to search it up for visualization)
+</p>
+<ul class="org-ul">
+<li>AND Gate</li>
+<li>OR Gate</li>
+<li>NOT Gate</li>
+<li>NAND Gate</li>
+<li>NOR Gate</li>
+<li>XOR Gate</li>
+<li>can add negation (tiny circle) before logic gate so that the variable complement is taken in as input.</li>
+<li>all of these gates can take n number of inputs, although 2-input logic gates are most commonly used.</li>
+</ul>
+
+<p>
+2 Switch (Jack and Jill) Light Controller
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">x</td>
+<td class="org-right">y</td>
+<td class="org-right">light</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>Mimics an XOR gate (≠)</li>
+</ul>
+
+<p>
+Half Adder (Bitwise Addition)
+</p>
+<ul class="org-ul">
+<li>S = Sum.</li>
+<li>C = Carry.</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">x</td>
+<td class="org-right">y</td>
+<td class="org-right">S</td>
+<td class="org-right">C</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>S mimics an XOR gate.</li>
+<li>C mimics an AND gate.</li>
+<li>Can use two half adders to make a full adder.</li>
+</ul>
+
+<p>
+Language and Grammars
+</p>
+<ul class="org-ul">
+<li>every language has tokens.</li>
+<li>these tokens can be used to make statements/phrases/sentences.</li>
+<li>parse tree-statements (probably want to search it up for visualization)
+<ul class="org-ul">
+<li>show how tokens branch together to form statements.</li>
+<li>l-value = place to store values.</li>
+<li>r-value = expression that can be evaluated.</li>
+</ul></li>
+</ul>
+
+<p>
+Representing Parse Trees/Languages Formally
+</p>
+<dl class="org-dl">
+<dt>grammar</dt><dd>formally describes valid sentences/phrases/statements in a given language.</dd>
+</dl>
+
+<p>
+tokens are terminals/terminal symbols.
+phrases are represented with non-terminal symbols.
+</p>
+<ul class="org-ul">
+<li>ex: the horse runs quickly.
+<ul class="org-ul">
+<li>&ldquo;the&rdquo; is an article.</li>
+<li>&ldquo;horse&rdquo; is a noun phrase.</li>
+<li>&ldquo;runs quickly&rdquo; is a verb phrase.
+<ul class="org-ul">
+<li>&ldquo;runs&rdquo; is a verb.</li>
+<li>&ldquo;quickly&rdquo; is an adverb.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>
+Example:
+</p>
+<ul class="org-ul">
+<li>sentence consists of an article, a noun phrase, and a verb phrase.
+<ul class="org-ul">
+<li>a noun phrase consists of an adjective and a noun.</li>
+<li>a verb phrase consists of a verb and adverb.</li>
+</ul></li>
+<li>article -&gt; &ldquo;a&rdquo; | &ldquo;the&rdquo;</li>
+<li>noun -&gt; &ldquo;horse&rdquo; | &ldquo;rabbit&rdquo;</li>
+<li>verb -&gt; &ldquo;runs&rdquo; | &ldquo;eats&rdquo;</li>
+<li>adjective -&gt; &ldquo;black&rdquo; | &ldquo;white&rdquo;</li>
+<li>adverb -&gt; &ldquo;quickly&rdquo; | &ldquo;slowly&rdquo;
+<ul class="org-ul">
+<li>&ldquo;A black rabbit runs quickly.&rdquo;</li>
+<li>&ldquo;The white horse eats slowly.&rdquo;</li>
+</ul></li>
+<li>can make 32 different sentences.</li>
+</ul>
+
+<p>
+Phrase-Structure Grammar
+</p>
+<ul class="org-ul">
+<li>G = (V, T, N, s, P)
+<ul class="org-ul">
+<li>V = {vocabulary, which includes all terminals + non-terminals}</li>
+<li>T = {terminals}</li>
+<li>N = {non-terminals}
+<ul class="org-ul">
+<li>equal to V \ T</li>
+</ul></li>
+<li>P = {production rules} (8 production rules in above example)</li>
+<li>s = start symbol, s ⋿ N (&ldquo;sentence&rdquo; in above example)</li>
+</ul></li>
+<li>note: λ (lambda) refers to an empty string (&ldquo;&rdquo;).</li>
+<li>|L| refers to the number of possible sentences that can be made from a set of production rules.</li>
+<li>L = {all possible valid sentences that can be produced from a set of production rules/grammar}</li>
+</ul>
+
+<p>
+Notation
+</p>
+<ul class="org-ul">
+<li>grammar &ldquo;produces&rdquo; valid sentences.</li>
+<li>a language is generated using grammar.</li>
+<li>strings/sentences are parsed and checked to see if it fits the grammar rules.</li>
+<li>a sentence is a string of tokens (non-terminals).</li>
+</ul>
+
+<p>
+Grammar Types
+</p>
+<ol class="org-ol">
+<li>context sensitive = allows context sensitive production rules. (pretty self-explanatory)
+<ul class="org-ul">
+<li>ex: l A r -&gt; l w r, where l, w, and r are non-terminal phrases.</li>
+<li>A can only be replaced with w when surrounded by l and r.</li>
+<li>in other words, each production rule depends on another production rule to the left and right.</li>
+</ul></li>
+<li>context-free
+<ul class="org-ul">
+<li>ex: A -&gt; w.</li>
+<li>A can be replaced with w anywhere.</li>
+<li>the horse and rabbit example is context-free.</li>
+</ul></li>
+<li>Regular = only allows production rules of the form:
+<ul class="org-ul">
+<li>A -&gt; λ, A -&gt; a, A -&gt; a B, where A is a single non-terminal, and B is a (string of) non-terminals, and a is a single terminal.</li>
+<li>in other words, each production rule depends on another production rule either to the left or to the right.</li>
+<li>allow straightforward left to right parsing. at any point in parsing input string, there exists a finite list of valid next words/terminals.</li>
+<li>not all English sentences can be converted into regular grammar.</li>
+</ul></li>
+</ol>
+
+<p>
+note: language L can be produced by more than one grammar.
+</p>
+
+<p>
+Syntax vs. Semantics
+</p>
+<ul class="org-ul">
+<li>syntax refers to grammars.</li>
+<li>semantics refers to meaning.</li>
+<li>some sentences may have clear syntax but no discernable meaning.</li>
+<li>computer languages must have clear semantics for valid programming.</li>
+</ul>
+
+<p>
+Finite State Machine (FSM) (probably want to search it up for visualization)
+</p>
+<ul class="org-ul">
+<li>AKA finite state automata (FSA)</li>
+<li>it&rsquo;s a way to program/represent regular grammar.</li>
+<li>has a finite number of states.
+<ul class="org-ul">
+<li>each state has a finite list of next valid inputs that will shift you to the next state.</li>
+</ul></li>
+<li>ex: inputs are bit strings.
+<ul class="org-ul">
+<li>a double circled node denotes a valid ending state (accepted state)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga27197e" class="outline-2">
+<h2 id="orga27197e"><span class="section-number-2">10.</span> lecture10</h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li>recall that regular grammar can parse input strings left to right.
+<ul class="org-ul">
+<li>for FSMs, at each point during input, we are in some state, and we expect the next token to be among the valid terminals.</li>
+</ul></li>
+</ul>
+
+<p>
+FSMs
+</p>
+<ul class="org-ul">
+<li>often draw transition tables to go with FSMs with columns such as:
+<ul class="org-ul">
+<li>state</li>
+<li>input</li>
+<li>next state</li>
+<li>output (optional)</li>
+</ul></li>
+</ul>
+
+<p>
+FSMs with no output
+</p>
+<ul class="org-ul">
+<li>used for language recognition.</li>
+<li>only returns Boolean value (accept or reject).</li>
+<li>an FSM M is M = (S, I, f, S0, F), where
+<ul class="org-ul">
+<li>S = {states}</li>
+<li>I = {input alphabet/tokens}</li>
+<li>f = transition function/table</li>
+<li>S0 = member of S, represents the start state</li>
+<li>F = {valid final states}</li>
+</ul></li>
+<li>string x = x0, x1, x2, &#x2026;, xn, where each xn is in the set I, is recognized (valid) if M takes x to a state in F.
+<ul class="org-ul">
+<li>L(M) is the language recognized by M.
+<ul class="org-ul">
+<li>L(M) = {x | x is recognized by M}.</li>
+</ul></li>
+</ul></li>
+<li>2 FSMs are equivalent if L(M1) = L(M2).</li>
+</ul>
+
+<p>
+FSMs with output
+</p>
+<ul class="org-ul">
+<li>an FSM with output M is M = (S, I, O, F, S0, F), where
+<ul class="org-ul">
+<li>S = {states}</li>
+<li>I = {input alphabet/tokens}</li>
+<li>O = {output alphabet}</li>
+<li>f = transition function/table with output column</li>
+<li>S0 = member of S, represents the start state.</li>
+<li>F = {valid final states}</li>
+</ul></li>
+<li>2 FSMs with output M1 and M2 are equivalent if L(M1) = L(M2) and always produce the same output.</li>
+</ul>
+
+<p>
+Non-Deterministic FSMs
+</p>
+<ul class="org-ul">
+<li>for deterministic FSMs, given current state, input token, output, and next state are all 100 percent determined.</li>
+<li>for non-deterministic FSMs, current state, input token, output, and next state are &ldquo;choosable&rdquo; from the set.
+<ul class="org-ul">
+<li>in other words, next state is a set such that current state is a set of possible states reachable through f and x, where f is the transition function and x is an element of I.</li>
+</ul></li>
+<li>a non-deterministic FSM with output M is M = (S, I, O, F, S0, F), where
+<ul class="org-ul">
+<li>S = {states}</li>
+<li>I = {input alphabet/tokens}</li>
+<li>O = {output alphabet}</li>
+<li>f = transition function/table with output column and can have next state and output as sets.</li>
+<li>S0 = member of S, represents the start state.</li>
+<li>F = {valid final states}</li>
+</ul></li>
+<li>2 FSMs with output M1 and M2 are equivalent if L(M1) = L(M2) and always produce the same output.</li>
+<li>non-deterministic FSM M recognizes string x = x0, x1, x2, &#x2026;, xn if there exists a path of length n through f applied to x that ends in a final state in F.
+<ul class="org-ul">
+<li>in other words, if Ci = {current states after i steps}, then x is recognized if Cn ∩ I ≠ ∅.</li>
+</ul></li>
+<li>L(M) is language recognized by non-deterministic FSM, M.</li>
+</ul>
+
+<p>
+Turing Machines
+</p>
+<ul class="org-ul">
+<li>highly simplified view of computers.</li>
+<li>one problem with FSMs is they have no memory, such as RAM.
+<ul class="org-ul">
+<li>a Turing Machine uses ticker tape (paper) where the user can read/write characters. (such as bits)</li>
+<li>this ticker tape acts as memory.</li>
+</ul></li>
+<li>a Turing Machine is an FSM with output that has a read/write header.
+<ul class="org-ul">
+<li>assume that Turing Machine T starts with read/write header on the leftmost non-blank character.</li>
+</ul></li>
+<li>Turing Machine T = (S, I, f, S0, F), where
+<ul class="org-ul">
+<li>S = {states}</li>
+<li>I = {input alphabet, which may include blank characters}</li>
+<li>f = transition function with columns for current state, input, output, next state, and whether to move left or right.</li>
+<li>S0 = member of S, represents the start state.</li>
+<li>F = {accepted final states}</li>
+</ul></li>
+<li>steps:
+<ol class="org-ol">
+<li>read character ⋿ I under read/write header.</li>
+<li>write over using output character.</li>
+<li>move left or right.</li>
+<li>FSM is now in the next state.</li>
+</ol></li>
+<li>T recognizes input string x if T starting in state S0 halts (stops) in a final accepting state.</li>
+<li>L is the language (set of accepted strings) of T.</li>
+<li>if Turing Machine T starts with input x, if T halts successfully, then let y be the output string on the tape. Therefore:
+<ul class="org-ul">
+<li>y = T(x)</li>
+<li>if x is not accepted, then f has entries that cause the Turing Machine to loop infinitely.
+<ul class="org-ul">
+<li>in this case, y is undefined.</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Ashley Pock</p>
+<p class="date">Created: 09/06/2025 Sat<br>Last Modified: 09/06/2025 Sat</p>
+</div>
+</body>
+</html>
