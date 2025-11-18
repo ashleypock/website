@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-11-12 Wed 17:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>functions</title>
+<meta name="author" content="ashley_pock" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">functions</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf14a830">1. characteristics</a></li>
+<li><a href="#org023f884">2. arguments</a></li>
+<li><a href="#org80e7421">3. docstrings</a></li>
+<li><a href="#orgc1e27bb">4. asserts</a></li>
+<li><a href="#org0caf389">5. namespaces and scopes</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf14a830" class="outline-2">
+<h2 id="orgf14a830"><span class="section-number-2">1.</span> characteristics</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>function = predefined code block that can be used in multiple parts of your program.
+<ul class="org-ul">
+<li>code block can include branches, loops, and other statements.</li>
+</ul></li>
+<li>useful for reducing redundancy and improving clarity and readability.
+<ul class="org-ul">
+<li>on a much larger scale, functions can be defined in one file and potentially be used in other files as needed, allowing for modularity.</li>
+</ul></li>
+<li>two components:
+<ul class="org-ul">
+<li>function definition = consists of function name and block of statements.</li>
+<li>function call = interpreter jumps to function definition and executes its statements.</li>
+</ul></li>
+<li>def keyword is used to define new functions.</li>
+<li>return statement = returns a value from a function.
+<ul class="org-ul">
+<li>function that doesn&rsquo;t return a value simply returns None (keyword).</li>
+<li>void function = function with no return statement.
+<ul class="org-ul">
+<li>probably the most popular example: print() function.</li>
+</ul></li>
+</ul></li>
+<li>a function that returns a value can be passed as an argument into another function call.
+<ul class="org-ul">
+<li>called hierarchical function calls.</li>
+<li>ics 6b type stuff: similar to composite functions, where the output of one function gets passed in as input into another function.</li>
+</ul></li>
+<li>here are a few function characteristics examples:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"function definition without arguments:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">function definition without arguments:</span>
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">greeting</span>():
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"Hello World!"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">function call:</span>
+greeting() <span style="color: #525252;"># </span><span style="color: #525252;">prints "Hello World!"</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"function call returning None:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">can use the return value from a function as an argument for another function.</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">print statement always returns None</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">print</span>()) <span style="color: #525252;"># </span><span style="color: #525252;">prints an empty line and None</span>
+
+</pre>
+</div>
+
+<pre class="example">
+function definition without arguments:
+Hello World!
+
+function call returning None:
+
+None
+</pre>
+</div>
+</div>
+<div id="outline-container-org023f884" class="outline-2">
+<h2 id="org023f884"><span class="section-number-2">2.</span> arguments</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>parameter = any input mentioned in function definition.</li>
+<li>argument = value passed into a function parameter when a function is called.</li>
+<li>a parameter is tied to the argument object until the function returns.</li>
+<li>a function can have 0 parameters.</li>
+<li>if a function has multiple parameters, then argument values are assigned to parameters positionally.
+<ul class="org-ul">
+<li>(first parameter = first argument, second parameter = second argument, &#x2026;)</li>
+</ul></li>
+<li>passing by assignment (AKA passing by object reference):
+<ul class="org-ul">
+<li>when an argument is passed, the function&rsquo;s parameter receives a reference to the same object in memory that the argument points to.
+<ul class="org-ul">
+<li>similar to assigning the value of one variable to another since both variables now point to the same object.</li>
+</ul></li>
+<li>immutable objects: any changes made to the parameter&rsquo;s value only remain changed within the local scope. The original argument passed in will still refer to the unchanged object once the function exits.</li>
+<li>mutable objects: if the contents of the object are modified in-place, these changes will be visible outside of the function&rsquo;s scope because the argument and parameter point to the same object.</li>
+</ul></li>
+<li>here are a few examples of functions with arguments and return values:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"function definition with argument:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">function definition with argument:</span>
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">greeting_name</span>(name):
+    <span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"Hello </span>{name}<span style="color: #99bb66;">!"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">function call with argument:</span>
+greeting_name(<span style="color: #99bb66;">"Professor Alfaro"</span>) <span style="color: #525252;"># </span><span style="color: #525252;">"Professor Alfaro" is</span>
+                                  <span style="color: #525252;"># </span><span style="color: #525252;">assigned to name when function is called.</span>
+greeting_name(<span style="color: #99bb66;">"World"</span>) <span style="color: #525252;"># </span><span style="color: #525252;">"World" is assigned to name when function is called.</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">Hello Professor Alfaro!</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">Hello World!</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"function definition with return value:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">function definition with return value:</span>
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">add</span>(a, b):
+    <span style="color: #51afef;">return</span> a + b
+
+<span style="color: #525252;"># </span><span style="color: #525252;">return values from function calls can be assigned to a variable for future use.</span>
+<span style="color: #dcaeea;">result</span> = add(<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>)
+<span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"Sum: </span>{result}<span style="color: #99bb66;">"</span>) <span style="color: #525252;"># </span><span style="color: #525252;">prints Sum: 3</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">can use the return value from a function as an argument for another function.</span>
+<span style="color: #c678dd;">print</span>(add(<span style="color: #dd8844; font-weight: bold;">6</span>, <span style="color: #dd8844; font-weight: bold;">7</span>)) <span style="color: #525252;"># </span><span style="color: #525252;">prints 13</span>
+
+</pre>
+</div>
+
+<pre class="example">
+function definition with argument:
+Hello Professor Alfaro!
+Hello World!
+
+function definition with return value:
+Sum: 3
+13
+</pre>
+</div>
+</div>
+<div id="outline-container-org80e7421" class="outline-2">
+<h2 id="org80e7421"><span class="section-number-2">3.</span> docstrings</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>string literal placed in the first line of a function definition.
+<ul class="org-ul">
+<li>use single-line comments for simpler functions.</li>
+<li>use multi-line comments for complex functions.
+<ul class="org-ul">
+<li>include function argument descriptions.</li>
+</ul></li>
+</ul></li>
+<li>help() function prints out a function&rsquo;s docstring, providing useful information on how to use it.
+<ul class="org-ul">
+<li>works with many built-in Python functions and data types.</li>
+</ul></li>
+<li>here are a few examples of function docstrings:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"single line docstring:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">must use triple quotes instead of #.</span>
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">square</span>(n):
+    <span style="color: #7d7d7d;">"""returns the square of input n. """</span>
+    <span style="color: #51afef;">return</span> n * n
+
+<span style="color: #c678dd;">help</span>(square)
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"-"</span> * <span style="color: #dd8844; font-weight: bold;">50</span>) <span style="color: #525252;"># </span><span style="color: #525252;">used as output separator</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"multi-line docstring:"</span>)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">add</span>(a, b):
+    <span style="color: #7d7d7d;">"""</span>
+<span style="color: #7d7d7d;">    adds two numbers together. takes two inputs and returns their sum.</span>
+
+<span style="color: #7d7d7d;">    parameters:</span>
+<span style="color: #7d7d7d;">        a (int or float): the first number.</span>
+<span style="color: #7d7d7d;">        b (int or float): the second number.</span>
+
+<span style="color: #7d7d7d;">    returns:</span>
+<span style="color: #7d7d7d;">        int or float: sum of a and b.</span>
+<span style="color: #7d7d7d;">    """</span>
+    <span style="color: #51afef;">return</span> a + b
+
+<span style="color: #c678dd;">help</span>(add)
+
+</pre>
+</div>
+
+<pre class="example" id="org7b164dd">
+single line docstring:
+Help on function square in module __main__:
+
+square(n)
+    returns the square of input n.
+
+--------------------------------------------------
+multi-line docstring:
+Help on function add in module __main__:
+
+add(a, b)
+    adds two numbers together. takes two inputs and returns their sum.
+
+    parameters:
+        a (int or float): the first number.
+        b (int or float): the second number.
+
+    returns:
+        int or float: sum of a and b.
+
+</pre>
+</div>
+</div>
+<div id="outline-container-orgc1e27bb" class="outline-2">
+<h2 id="orgc1e27bb"><span class="section-number-2">4.</span> asserts</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>assert statement = raises an AssertionError if the conditional expression is not met (AKA is False).
+<ul class="org-ul">
+<li>if the conditional expression is True, then the program continues executing like usual.</li>
+</ul></li>
+<li>pre-condition asserts = constraint that must be True before a code block can execute correctly.
+<ul class="org-ul">
+<li>Python may not detect programming errors that are specific to our functions.</li>
+<li>By using pre-condition asserts, we can enforce additional conditions that Python doesn&rsquo;t handle on its own.</li>
+</ul></li>
+<li>here are a few examples of using assert statements:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #525252;"># </span><span style="color: #525252;">assert statement is True:</span>
+<span style="color: #dcaeea;">x</span> = <span style="color: #dd8844; font-weight: bold;">10</span>
+<span style="color: #51afef;">assert</span> x &gt; <span style="color: #dd8844; font-weight: bold;">5</span>, <span style="color: #99bb66;">"x should be greater than 5"</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"x is greater than 5"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">assert statement is False:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">y = 3</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">assert y &gt; 5, "y should be greater than 5" # would raise AssertionError</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">print("this line won't print because an AssertionError occurs.")</span>
+
+</pre>
+</div>
+
+<pre class="example">
+x is greater than 5
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">division</span>(a, b):
+    <span style="color: #51afef;">assert</span> b != <span style="color: #dd8844; font-weight: bold;">0</span>, <span style="color: #99bb66;">"Denominator cannot be 0"</span>
+    <span style="color: #51afef;">return</span> a / b
+
+<span style="color: #525252;"># </span><span style="color: #525252;">assert statement is True:</span>
+<span style="color: #c678dd;">print</span>(division(<span style="color: #dd8844; font-weight: bold;">100</span>, <span style="color: #dd8844; font-weight: bold;">20</span>)) <span style="color: #525252;"># </span><span style="color: #525252;">prints 5</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">assert statement is False:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">print(division(1, 0)) # would raise AssertionError</span>
+
+</pre>
+</div>
+
+<pre class="example">
+5.0
+</pre>
+</div>
+</div>
+<div id="outline-container-org0caf389" class="outline-2">
+<h2 id="org0caf389"><span class="section-number-2">5.</span> namespaces and scopes</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>namespace = maps names to objects.
+<ul class="org-ul">
+<li>can view the names in the current local and global nanespace using locals() and globals() functions.</li>
+</ul></li>
+<li>scope = the part of a program where a name is visible.
+<ul class="org-ul">
+<li>built-in scope = built in Python names.</li>
+<li>global scope = globally defined names that aren&rsquo;t in any functions.</li>
+<li>local scope = if a function is being executed, then the function is the local scope. Otherwise, the local scope is the same as the global scope.</li>
+</ul></li>
+<li>scope resolution = searching for a name in namespaces.
+<ul class="org-ul">
+<li>the local namespace is checked first, then the global namespace, and finally, the built-in namespace.</li>
+</ul></li>
+<li>multiple variables can share the same name despite having different values if they&rsquo;re in different namespaces.
+<ul class="org-ul">
+<li>assignment statements always prioritize creation/modification of a name&rsquo;s value in the local namespace.</li>
+<li>however, this can be overridden using the global keyword, which forces the interpreter to consider a local name as a global name.</li>
+</ul></li>
+<li>local variable = variable created inside a function.</li>
+<li>global variable = variable created outside of any functions.</li>
+<li>generally want to limit the number of global variables in your program to reduce dependencies and allow for code modularity.
+<ul class="org-ul">
+<li>generally don&rsquo;t want your local and global variables to have the same names since it can be confusing to others who read your code.</li>
+</ul></li>
+<li>here are a few examples demonstrating namespaces, scopes, locals(), globals(), and global:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #525252;"># </span><span style="color: #525252;">demonstrating namespaces and scopes</span>
+
+<span style="color: #dcaeea;">global_variable</span> = <span style="color: #99bb66;">"global variable"</span>
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">function1</span>():
+    <span style="color: #dcaeea;">local_variable1</span> = <span style="color: #99bb66;">"local variable 1"</span>
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"entering function1"</span>)
+    <span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"accessing global_variable: </span>{global_variable}<span style="color: #99bb66;">"</span>)
+    <span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"accessing local_variable1: </span>{local_variable1}<span style="color: #99bb66;">"</span>)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">function2</span>():
+    <span style="color: #dcaeea;">local_variable2</span> = <span style="color: #99bb66;">"local variable 2"</span>
+    <span style="color: #c678dd;">print</span>()
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"entering function2"</span>)
+    <span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"accessing global_variable: </span>{global_variable}<span style="color: #99bb66;">"</span>)
+    <span style="color: #525252;"># </span><span style="color: #525252;">print(local_variable1) # would raise a NameError because local_variable1 is not in scope.</span>
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"in global scope:"</span>)
+<span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"accessing global_variable: </span>{global_variable}<span style="color: #99bb66;">"</span>)
+
+function1()
+function2()
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"built-in scope always works:"</span>)
+<span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">len</span>([<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>]))
+
+<span style="color: #525252;"># </span><span style="color: #525252;">print(local_variable2) # would raise a NameError because local_variable2 is not in scope.</span>
+
+</pre>
+</div>
+
+<pre class="example" id="orgad41f5c">
+in global scope:
+accessing global_variable: global variable
+entering function1
+accessing global_variable: global variable
+accessing local_variable1: local variable 1
+
+entering function2
+accessing global_variable: global variable
+built-in scope always works:
+3
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #525252;"># </span><span style="color: #525252;">demonstrating locals() and globals() functions.</span>
+
+<span style="color: #dcaeea;">global_variable</span> = <span style="color: #99bb66;">"global variable"</span>
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">a_function</span>():
+    <span style="color: #dcaeea;">local_variable</span> = <span style="color: #99bb66;">"local_variable"</span>
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"inside function:"</span>)
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"calling locals() function:"</span>, <span style="color: #c678dd;">locals</span>()) <span style="color: #525252;"># </span><span style="color: #525252;">has local_variable</span>
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"calling globals() function:"</span>, <span style="color: #c678dd;">globals</span>()) <span style="color: #525252;"># </span><span style="color: #525252;">has global_variable,</span>
+                                                    <span style="color: #525252;"># </span><span style="color: #525252;">a_function, and other built-in names</span>
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"in global scope:"</span>)
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"locals():"</span>, <span style="color: #c678dd;">locals</span>()) <span style="color: #525252;"># </span><span style="color: #525252;">has global_variable, a_function, and other built-in names</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"globals():"</span>, <span style="color: #c678dd;">globals</span>()) <span style="color: #525252;"># </span><span style="color: #525252;">has global_variable, a_function, and other built-in names</span>
+
+a_function()
+
+</pre>
+</div>
+
+<pre class="example">
+in global scope:
+locals(): {'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': &lt;class '_frozen_importlib.BuiltinImporter'&gt;, '__spec__': None, '__annotations__': {}, '__builtins__': &lt;module 'builtins' (built-in)&gt;, '__file__': '&lt;stdin&gt;', '__cached__': None, 'global_variable': 'global variable', 'a_function': &lt;function a_function at 0x7ffafb6432e0&gt;}
+globals(): {'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': &lt;class '_frozen_importlib.BuiltinImporter'&gt;, '__spec__': None, '__annotations__': {}, '__builtins__': &lt;module 'builtins' (built-in)&gt;, '__file__': '&lt;stdin&gt;', '__cached__': None, 'global_variable': 'global variable', 'a_function': &lt;function a_function at 0x7ffafb6432e0&gt;}
+inside function:
+calling locals() function: {'local_variable': 'local_variable'}
+calling globals() function: {'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': &lt;class '_frozen_importlib.BuiltinImporter'&gt;, '__spec__': None, '__annotations__': {}, '__builtins__': &lt;module 'builtins' (built-in)&gt;, '__file__': '&lt;stdin&gt;', '__cached__': None, 'global_variable': 'global variable', 'a_function': &lt;function a_function at 0x7ffafb6432e0&gt;}
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #dcaeea;">global_counter</span> = <span style="color: #dd8844; font-weight: bold;">0</span>
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">increment_global_counter</span>():
+    <span style="color: #525252;"># </span><span style="color: #525252;">modifies global global_counter since we used the global keyword.</span>
+    <span style="color: #51afef;">global</span> global_counter
+    <span style="color: #dcaeea;">global_counter</span> += <span style="color: #dd8844; font-weight: bold;">1</span>
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"Inside function, global_counter:"</span>, global_counter)
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"Before function call, global_counter:"</span>, global_counter)
+increment_global_counter()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"After function call, global_counter:"</span>, global_counter)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">try_to_modify_global_without_keyword</span>():
+    <span style="color: #525252;"># </span><span style="color: #525252;">modifies local global_counter instead of global global_counter.</span>
+    <span style="color: #dcaeea;">global_counter</span> = <span style="color: #dd8844; font-weight: bold;">100</span>
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"Inside function (local modification), global_counter:"</span>, global_counter)
+
+try_to_modify_global_without_keyword()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"After second function call, global_counter:"</span>, global_counter) <span style="color: #525252;"># </span><span style="color: #525252;">should still be 1</span>
+
+</pre>
+</div>
+
+<pre class="example">
+Before function call, global_counter: 0
+Inside function, global_counter: 1
+After function call, global_counter: 1
+Inside function (local modification), global_counter: 100
+After second function call, global_counter: 1
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Ashley Pock</p>
+<p class="date">Created: 11/12/2025 Wed</p>
+</div>
+</body>
+</html>

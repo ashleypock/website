@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-11-10 Mon 12:56 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>loops</title>
+<meta name="author" content="ashley_pock" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">loops</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3aa8a72">1. introduction</a></li>
+<li><a href="#org6cb7a5d">2. while loops</a></li>
+<li><a href="#org6314762">3. for loops</a></li>
+<li><a href="#orge5a7b91">4. for _ in range() loops</a></li>
+<li><a href="#org82d8b79">5. break and continue</a></li>
+<li><a href="#org1a91acb">6. nested loops</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3aa8a72" class="outline-2">
+<h2 id="org3aa8a72"><span class="section-number-2">1.</span> introduction</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>in programming, loops are used when you want to repeat a specific block of code.
+<ul class="org-ul">
+<li>for loops, indentation matters in Python.</li>
+</ul></li>
+<li>some examples include:
+<ul class="org-ul">
+<li>finding the average.</li>
+<li>counting the number of times a specific value appears in a data structure.</li>
+<li>finding the minimum or maximum value.</li>
+</ul></li>
+<li>two main types of loops in python include while and for loops. let&rsquo;s briefly go over them.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6cb7a5d" class="outline-2">
+<h2 id="org6cb7a5d"><span class="section-number-2">2.</span> while loops</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>executes while a a specific condition is True.
+<ul class="org-ul">
+<li>once the condition is False, the loop ends/terminates.</li>
+</ul></li>
+<li>the condition is checked before each loop iteration.
+<ul class="org-ul">
+<li>if the condition is initially False, then the code block will not execute (AKA skipped over).</li>
+<li>if the condition never becomes False, then an infinite loop occurs.
+<ul class="org-ul">
+<li>this can be prevented by changing a variable within the loop body that is within the loop&rsquo;s condition.</li>
+</ul></li>
+</ul></li>
+<li>use a while loop when:
+<ul class="org-ul">
+<li>the number of iterations required is not known beforehand.</li>
+<li>condition-based rather than numerical-based.</li>
+</ul></li>
+<li>while loops also support an optional else block.
+<ul class="org-ul">
+<li>executes once only if the loop&rsquo;s condition becomes False and the loop terminates normally (without the use of a break statement).</li>
+</ul></li>
+<li>sentinel value = value that causes a loop to end.</li>
+<li>here are a few while loop examples:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #525252;"># </span><span style="color: #525252;">while loop</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">if i never incremented, this loop would enter an infinite loop because</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">i would never be greater than 5.</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">this example closely emulates what a for loop does:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">- i is set to an initial value, 1 (start)</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">- the while loop stops when i is greater than 5 AKA becomes equal to 6 (stop)</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">- the while loop increments by 1 during each iteration (step)</span>
+<span style="color: #dcaeea;">i</span> = <span style="color: #dd8844; font-weight: bold;">1</span>
+<span style="color: #51afef;">while</span> i &lt;= <span style="color: #dd8844; font-weight: bold;">5</span>:
+    <span style="color: #c678dd;">print</span>(i)
+    <span style="color: #dcaeea;">i</span> += <span style="color: #dd8844; font-weight: bold;">1</span> <span style="color: #525252;"># </span><span style="color: #525252;">i is incremented during each iteration.</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 1-5.</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">while loop with else block</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">since the while loop terminates normally, the code in the else block is executed.</span>
+<span style="color: #dcaeea;">j</span> = <span style="color: #dd8844; font-weight: bold;">0</span>
+<span style="color: #51afef;">while</span> j &lt; <span style="color: #dd8844; font-weight: bold;">3</span>:
+    <span style="color: #c678dd;">print</span>(j)
+    <span style="color: #dcaeea;">j</span> += <span style="color: #dd8844; font-weight: bold;">1</span>
+<span style="color: #51afef;">else</span>:
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"no break statement was used."</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 0-2 and "no break statement was used."</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">since the while loop terminates using a break statement,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">the code in the else block is not executed.</span>
+<span style="color: #dcaeea;">k</span> = <span style="color: #dd8844; font-weight: bold;">1</span>
+<span style="color: #51afef;">while</span> k &lt; <span style="color: #dd8844; font-weight: bold;">4</span>:
+    <span style="color: #c678dd;">print</span>(k)
+    <span style="color: #dcaeea;">k</span> += <span style="color: #dd8844; font-weight: bold;">1</span>
+    <span style="color: #51afef;">if</span> k == <span style="color: #dd8844; font-weight: bold;">3</span>:
+        <span style="color: #51afef;">break</span>
+<span style="color: #51afef;">else</span>:
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"no break statement was used."</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 1-2.</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">in this case, "q" is the sentinel value because it causes the while loop to end.</span>
+<span style="color: #dcaeea;">sentinel_value</span> = <span style="color: #99bb66;">"q"</span>
+<span style="color: #dcaeea;">user_input</span> = <span style="color: #c678dd;">input</span>(<span style="color: #99bb66;">"quit out of this while loop by entering 'q': "</span>)
+
+<span style="color: #51afef;">while</span> user_input != sentinel_value:
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"still in the loop! "</span>)
+    <span style="color: #dcaeea;">user_input</span> = <span style="color: #c678dd;">input</span>(<span style="color: #99bb66;">"quit out of this while loop by entering 'q': "</span>)
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"no longer in the loop"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">let input be:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">no</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">q</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">quit out of this while loop by entering 'q':</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">still in the loop!</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">quit out of this while loop by entering 'q':</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">no longer in the loop</span>
+        
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6314762" class="outline-2">
+<h2 id="org6314762"><span class="section-number-2">3.</span> for loops</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>typically used to iterate over iterable objects, such as lists, tuples, strings, etc.</li>
+<li>typically used in combination with the range() function, which returns an iterable object.</li>
+<li>allows for processing elements in a container one by one.
+<ul class="org-ul">
+<li>ex: appending a specific number of items to a list based on user input.</li>
+</ul></li>
+<li>the loop automatically terminates when all items in the iterable have been processed.</li>
+<li>two types of looping:
+<ul class="org-ul">
+<li>looping by index</li>
+<li>looping by value</li>
+</ul></li>
+<li>use a for loop when:
+<ul class="org-ul">
+<li>you know the number of times you want to iterate through a code block.</li>
+<li>you want to iterate over the indices or values of some data structure.</li>
+</ul></li>
+<li>typically preferred over while loops when possible so you don&rsquo;t have to deal with infinite loops.</li>
+<li>similar to while loops, for loops also have an optional else block.
+<ul class="org-ul">
+<li>the else code block only executes if the loop terminates normally without encountering a break statement.</li>
+</ul></li>
+<li>here are a few for loop examples:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"simple for loop:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">for loop</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">5</span>):
+    <span style="color: #c678dd;">print</span>(i)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 0-4.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"looping by index:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">for loop using an iterable data structure (works for lists, tuples, strings, etc.)</span>
+<span style="color: #dcaeea;">a_list</span> = [<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>, <span style="color: #dd8844; font-weight: bold;">4</span>, <span style="color: #dd8844; font-weight: bold;">5</span>]
+
+<span style="color: #525252;"># </span><span style="color: #525252;">looping by index</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #c678dd;">len</span>(a_list)):
+    <span style="color: #c678dd;">print</span>(i)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 0-4.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"looping by index to access elements:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">can use looping by index to to access list elements</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #c678dd;">len</span>(a_list)):
+    <span style="color: #c678dd;">print</span>(a_list[i])
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 1-5.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"looping by value:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">looping by value</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">use this when you only need the values and not the indices of an iterable data structure.</span>
+<span style="color: #51afef;">for</span> element <span style="color: #51afef;">in</span> a_list:
+    <span style="color: #c678dd;">print</span>(element)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 1-5.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"looping by value using a list copy:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">can iterate over a copy of a list using [:], which creates a shallow copy of the list.</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">useful when you want to modify values in the list without the list size changing.</span>
+<span style="color: #51afef;">for</span> element <span style="color: #51afef;">in</span> a_list[:]:
+    <span style="color: #c678dd;">print</span>(element)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 1-5.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"looping by index and value using enumerate() function:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">can use the enumerate() function to access both the index and its respective value.</span>
+<span style="color: #51afef;">for</span> index, value <span style="color: #51afef;">in</span> <span style="color: #c678dd;">enumerate</span>(a_list):
+    <span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">str</span>(index) + <span style="color: #99bb66;">", "</span> + <span style="color: #c678dd;">str</span>(value))
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 1-5 and their corresponding index.</span>
+        
+</pre>
+</div>
+
+<pre class="example" id="org9620694">
+simple for loop:
+0
+1
+2
+3
+4
+
+looping by index:
+0
+1
+2
+3
+4
+
+looping by index to access elements:
+1
+2
+3
+4
+5
+
+looping by value:
+1
+2
+3
+4
+5
+
+looping by value using a list copy:
+1
+2
+3
+4
+5
+
+looping by index and value using enumerate() function:
+0, 1
+1, 2
+2, 3
+3, 4
+4, 5
+</pre>
+
+<ul class="org-ul">
+<li>since dictionaries are unordered, key-value pairs are accessed rather than elements via index.</li>
+<li>here are a few dictionary for loop examples:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"iterating over keys:"</span>)
+<span style="color: #525252;"># </span><span style="color: #525252;">new dictionary object</span>
+<span style="color: #dcaeea;">a_dict</span> = {<span style="color: #99bb66;">"a"</span>: <span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #99bb66;">"b"</span>: <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #99bb66;">"c"</span>: <span style="color: #dd8844; font-weight: bold;">3</span>}
+
+<span style="color: #525252;"># </span><span style="color: #525252;">when a_dict alone is used as the iterable in a for loop,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">the keys are being iterated rather than the values.</span>
+<span style="color: #51afef;">for</span> key <span style="color: #51afef;">in</span> a_dict:
+    <span style="color: #c678dd;">print</span>(key)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out characters a-c.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"iterating over keys using keys() method:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">alternatively, you can also use the keys() method,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">which returns an object containing the dictionary's keys.</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">this is typically preferred over the previous example for readability purposes.</span>
+<span style="color: #51afef;">for</span> key <span style="color: #51afef;">in</span> a_dict.keys():
+    <span style="color: #c678dd;">print</span>(key)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out characters a-c.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"iterating over values using values() method:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">if you want to iterate over the dictionary's values, you can use the values() method.</span>
+<span style="color: #51afef;">for</span> value <span style="color: #51afef;">in</span> a_dict.values():
+    <span style="color: #c678dd;">print</span>(value)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 1-3.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"iterating over keys and values using items() method:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">if you want to have access to both the dictionary's keys and corresponding values,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">you can use the items() method.</span>
+<span style="color: #51afef;">for</span> key, value <span style="color: #51afef;">in</span> a_dict.items():
+    <span style="color: #c678dd;">print</span>(key + <span style="color: #99bb66;">", "</span> + <span style="color: #c678dd;">str</span>(value))
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out keys a-c and their corresponding values.</span>
+
+</pre>
+</div>
+
+<pre class="example" id="org26512ad">
+iterating over keys:
+a
+b
+c
+
+iterating over keys using keys() method:
+a
+b
+c
+
+iterating over values using values() method:
+1
+2
+3
+
+iterating over keys and values using items() method:
+a, 1
+b, 2
+c, 3
+</pre>
+</div>
+</div>
+<div id="outline-container-orge5a7b91" class="outline-2">
+<h2 id="orge5a7b91"><span class="section-number-2">4.</span> for _ in range() loops</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>lets go into more detail about the range() function&rsquo;s capabilities.</li>
+<li>can take up to 3 arguments (in this order):
+<ul class="org-ul">
+<li>start
+<ul class="org-ul">
+<li>defaults to 0 if not specified.</li>
+<li>inclusive.</li>
+</ul></li>
+<li>stop
+<ul class="org-ul">
+<li>exclusive.</li>
+</ul></li>
+<li>step
+<ul class="org-ul">
+<li>defaults to 1 if not specified.</li>
+</ul></li>
+</ul></li>
+<li>if one argument is specified, then:
+<ul class="org-ul">
+<li>start = 0</li>
+<li>stop = given argument</li>
+<li>step = 1</li>
+</ul></li>
+<li>if two arguments are specified, then:
+<ul class="org-ul">
+<li>start = argument 1</li>
+<li>stop = argument 2</li>
+<li>step = 1</li>
+</ul></li>
+<li>if three arguments are specified, then:
+<ul class="org-ul">
+<li>start = argument 1</li>
+<li>stop = argument 2</li>
+<li>step = argument 3</li>
+</ul></li>
+<li>here are a few for _ in range() examples:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"for loop with range(4):"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">the stop value is always excluded</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">4</span>):
+    <span style="color: #c678dd;">print</span>(i)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 0-3.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"for loop with range(3, 7):"</span>)
+
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">3</span>, <span style="color: #dd8844; font-weight: bold;">7</span>):
+    <span style="color: #c678dd;">print</span>(i)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 3-6.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"for loop with range(0, 5, 2):"</span>)
+
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">0</span>, <span style="color: #dd8844; font-weight: bold;">5</span>, <span style="color: #dd8844; font-weight: bold;">2</span>):
+    <span style="color: #c678dd;">print</span>(i)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out all even numbers from 0-4.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"for loop with range(5, 0, 2):"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">if the stop is less than or equal to the start and the step is positive,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">range() will return an empty sequence.</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">5</span>, <span style="color: #dd8844; font-weight: bold;">0</span>, <span style="color: #dd8844; font-weight: bold;">2</span>):
+    <span style="color: #c678dd;">print</span>(i)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">won't print anything.</span>
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"won't print anything."</span>)
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"for loop with range(5, 0, -1):"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">supports negative step</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">5</span>, <span style="color: #dd8844; font-weight: bold;">0</span>, -<span style="color: #dd8844; font-weight: bold;">1</span>):
+    <span style="color: #c678dd;">print</span>(i)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 5-1 in descending order.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"for loop with range(0, 5, -1):"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">if the stop is greater than or equal to the start and the step is negative,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">range() will return an empty sequence.</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">0</span>, <span style="color: #dd8844; font-weight: bold;">5</span>, -<span style="color: #dd8844; font-weight: bold;">1</span>):
+    <span style="color: #c678dd;">print</span>(i)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">won't print anything.</span>
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"won't print anything."</span>)
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"for loop with _ and range(6):"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">can optionally use _ instead of a variable if the value of range()</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">during each iteration is not needed for your code to execute.</span>
+<span style="color: #51afef;">for</span> _ <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">6</span>):
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"hi"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out "hi" 6 times.</span>
+        
+</pre>
+</div>
+
+<pre class="example" id="orgf04a2d9">
+for loop with range(4):
+0
+1
+2
+3
+
+for loop with range(3, 7):
+3
+4
+5
+6
+
+for loop with range(0, 5, 2):
+0
+2
+4
+
+for loop with range(5, 0, 2):
+won't print anything.
+
+for loop with range(5, 0, -1):
+5
+4
+3
+2
+1
+
+for loop with range(0, 5, -1):
+won't print anything.
+
+for loop with _ and range(6):
+hi
+hi
+hi
+hi
+hi
+hi
+</pre>
+</div>
+</div>
+<div id="outline-container-org82d8b79" class="outline-2">
+<h2 id="org82d8b79"><span class="section-number-2">5.</span> break and continue</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>statements used to change the normal flow of execution within both for and while loops.</li>
+<li>break statement immediately terminates the loop.
+<ul class="org-ul">
+<li>program resumes at the statement following the loop.</li>
+<li>typically used when a specific condition is met within the loop.</li>
+</ul></li>
+<li>continue statement skips the rest of the current iteration of the loop.
+<ul class="org-ul">
+<li>program execution continues to the next iteration, reevaluating the loop&rsquo;s condition (for while loops) or moving on to the sequence&rsquo;s next item (for for loops).</li>
+<li>typically used when you want to skip parts of the loop&rsquo;s code but want the loop to continue with following iterations.</li>
+</ul></li>
+<li>here are a few loop examples using break and continue:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"for loop with continue:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">for loop with continue</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">10</span>):
+    <span style="color: #51afef;">if</span> i % <span style="color: #dd8844; font-weight: bold;">2</span> == <span style="color: #dd8844; font-weight: bold;">1</span>:
+        <span style="color: #51afef;">continue</span>
+    <span style="color: #c678dd;">print</span>(i)
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"printing even integers between 0-8 completed"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out all even numbers from 0-8 and "printing even integers between 0-8 completed".</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"for loop with break:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">for loop with break</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">10</span>):
+    <span style="color: #51afef;">if</span> i == <span style="color: #dd8844; font-weight: bold;">6</span>:
+        <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"broken loop at:"</span>, i)
+        <span style="color: #51afef;">break</span>
+    <span style="color: #c678dd;">print</span>(i)
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"printing integers 1-5 completed"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 1-5, "broken loop at: 6", and "printing integers 1-5 completed".</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"while loop with break:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">while loop with break</span>
+<span style="color: #dcaeea;">count</span> = <span style="color: #dd8844; font-weight: bold;">0</span>
+<span style="color: #51afef;">while</span> count &lt; <span style="color: #dd8844; font-weight: bold;">10</span>:
+    <span style="color: #c678dd;">print</span>(count)
+    <span style="color: #51afef;">if</span> count == <span style="color: #dd8844; font-weight: bold;">4</span>:
+        <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"broken loop at count:"</span>, count)
+        <span style="color: #51afef;">break</span>
+    <span style="color: #dcaeea;">count</span> += <span style="color: #dd8844; font-weight: bold;">1</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"printing integers 0-4 completed"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 0-4, "broken loop at count: 4", and "printing integers 0-4 completed".</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"while loop with continue:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">while loop with continue</span>
+<span style="color: #dcaeea;">number</span> = <span style="color: #dd8844; font-weight: bold;">0</span>
+<span style="color: #51afef;">while</span> number &lt; <span style="color: #dd8844; font-weight: bold;">5</span>:
+    <span style="color: #dcaeea;">number</span> += <span style="color: #dd8844; font-weight: bold;">1</span>
+    <span style="color: #51afef;">if</span> number == <span style="color: #dd8844; font-weight: bold;">3</span>:
+        <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"skipping number:"</span>, number)
+        <span style="color: #51afef;">continue</span>
+    <span style="color: #c678dd;">print</span>(number)
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"printing integers 1-5 excluding 3 completed"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out numbers 1-2, "skipping number: 3", numbers 4-5,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">and "printing integers 1-5 excluding 3 completed".</span>
+        
+</pre>
+</div>
+
+<pre class="example" id="orge8bcfd5">
+for loop with continue:
+0
+2
+4
+6
+8
+printing even integers between 0-8 completed
+
+for loop with break:
+1
+2
+3
+4
+5
+broken loop at: 6
+printing integers 1-5 completed
+
+while loop with break:
+0
+1
+2
+3
+4
+broken loop at count: 4
+printing integers 0-4 completed
+
+while loop with continue:
+1
+2
+skipping number: 3
+4
+5
+printing integers 1-5 excluding 3 completed
+</pre>
+</div>
+</div>
+<div id="outline-container-org1a91acb" class="outline-2">
+<h2 id="org1a91acb"><span class="section-number-2">6.</span> nested loops</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>placing one loop inside of another loop.</li>
+<li>the inner loop completes all of its iterations for every iteration of the outer loop.</li>
+<li>the inner loop&rsquo;s clause must be indented in relation to the outer loop.
+<ul class="org-ul">
+<li>the inner loop&rsquo;s statements must be further indented.</li>
+</ul></li>
+<li>use nested loops when:
+<ul class="org-ul">
+<li>iterating over multi-dimensional data structures (ex: nested lists).</li>
+<li>executing repeated action that involve multiple iterations at once.</li>
+</ul></li>
+<li>here are a few nested loop examples:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"nested for loops: "</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">nested for loops</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">4</span>):
+    <span style="color: #51afef;">for</span> j <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">4</span>):
+        <span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"</span>{i}<span style="color: #99bb66;"> * </span>{j}<span style="color: #99bb66;"> = </span>{i * j}<span style="color: #99bb66;">"</span>)
+    <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"-"</span> * <span style="color: #dd8844; font-weight: bold;">10</span>) <span style="color: #525252;"># </span><span style="color: #525252;">separator</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints all multiplication equations where the factors are numbers 1-3.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"nested while loops: "</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">nested while loops</span>
+<span style="color: #dcaeea;">rows</span> = <span style="color: #dd8844; font-weight: bold;">3</span>
+<span style="color: #dcaeea;">i</span> = <span style="color: #dd8844; font-weight: bold;">1</span>
+<span style="color: #51afef;">while</span> i &lt;= rows:
+    <span style="color: #dcaeea;">j</span> = <span style="color: #dd8844; font-weight: bold;">1</span>
+    <span style="color: #51afef;">while</span> j &lt;= i:
+        <span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"*"</span>, end=<span style="color: #99bb66;">""</span>)
+        <span style="color: #dcaeea;">j</span> += <span style="color: #dd8844; font-weight: bold;">1</span>
+    <span style="color: #c678dd;">print</span>() <span style="color: #525252;"># </span><span style="color: #525252;">new line after each row</span>
+    <span style="color: #dcaeea;">i</span> += <span style="color: #dd8844; font-weight: bold;">1</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out a 3 by 3 right triangle using asterisks.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"iterating through a nested list: "</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">iterating through a nested list</span>
+<span style="color: #dcaeea;">condition</span> = <span style="color: #a9a1e1;">True</span>
+<span style="color: #dcaeea;">count</span> = <span style="color: #dd8844; font-weight: bold;">0</span>
+<span style="color: #dcaeea;">nested_list</span> = [[<span style="color: #99bb66;">"apple"</span>, <span style="color: #99bb66;">"banana"</span>], [<span style="color: #99bb66;">"carrot"</span>, <span style="color: #99bb66;">"date"</span>], [<span style="color: #99bb66;">"eggplant"</span>, <span style="color: #99bb66;">"fig"</span>]]
+
+<span style="color: #51afef;">while</span> condition:
+    <span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"outer loop: </span>{count}<span style="color: #99bb66;">"</span>)
+    <span style="color: #51afef;">for</span> row <span style="color: #51afef;">in</span> nested_list:
+        <span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> row:
+            <span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">" - </span>{item}<span style="color: #99bb66;">"</span>)
+    <span style="color: #dcaeea;">count</span> += <span style="color: #dd8844; font-weight: bold;">1</span>
+    <span style="color: #51afef;">if</span> count &gt;= <span style="color: #dd8844; font-weight: bold;">2</span>:
+        <span style="color: #dcaeea;">condition</span> = <span style="color: #a9a1e1;">False</span>
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out all elements in the nested list twice,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">keeping track of the outer loop's variable value.</span>
+                
+</pre>
+</div>
+
+<pre class="example" id="org285784d">
+nested for loops: 
+1 * 1 = 1
+1 * 2 = 2
+1 * 3 = 3
+----------
+2 * 1 = 2
+2 * 2 = 4
+2 * 3 = 6
+----------
+3 * 1 = 3
+3 * 2 = 6
+3 * 3 = 9
+----------
+
+nested while loops: 
+*
+**
+***
+
+iterating through a nested list: 
+outer loop: 0
+ - apple
+ - banana
+ - carrot
+ - date
+ - eggplant
+ - fig
+outer loop: 1
+ - apple
+ - banana
+ - carrot
+ - date
+ - eggplant
+ - fig
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Ashley Pock</p>
+<p class="date">Created: 11/10/2025 Mon</p>
+</div>
+</body>
+</html>

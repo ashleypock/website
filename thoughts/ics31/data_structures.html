@@ -1,0 +1,982 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-11-10 Mon 22:41 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>data structures</title>
+<meta name="author" content="ashley_pock" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">data structures</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org24aba13">1. lists</a></li>
+<li><a href="#orgd90efc4">2. tuples</a></li>
+<li><a href="#orge59f45e">3. namedtuples</a></li>
+<li><a href="#org7447291">4. sets</a></li>
+<li><a href="#org678b78a">5. dictionaries</a></li>
+</ul>
+</div>
+</div>
+<p>
+there are many types of data structures in python. here are a few:
+</p>
+<div id="outline-container-org24aba13" class="outline-2">
+<h2 id="org24aba13"><span class="section-number-2">1.</span> lists</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>ordered</li>
+<li>items in a list are called elements, which are accessible via index.</li>
+<li>supports slicing:
+<ul class="org-ul">
+<li>syntax: list_name[start:stop:step]</li>
+</ul></li>
+<li>mutable, meaning that any changes to a list happen within the same list.</li>
+<li>elements can be of different types.</li>
+<li>use a list when:
+<ul class="org-ul">
+<li>you know you need to make changes to the data collection later on (adding, removing, etc.)</li>
+<li>when the order of the list sequence matters</li>
+<li>the size of the collection is not fixed.</li>
+</ul></li>
+<li>example: a grocery list
+<ul class="org-ul">
+<li>you need to be able to add items when they come to mind or remove them when you buy something.</li>
+</ul></li>
+<li>here are some common functions/methods used on lists:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"indexing into a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">list example</span>
+<span style="color: #dcaeea;">a_list</span> = [<span style="color: #99bb66;">"a"</span>, <span style="color: #99bb66;">"b"</span>, <span style="color: #99bb66;">"c"</span>]
+
+<span style="color: #525252;"># </span><span style="color: #525252;">use square brackets and indexing to retrieve an element from the list</span>
+<span style="color: #c678dd;">print</span>(a_list[<span style="color: #dd8844; font-weight: bold;">1</span>]) <span style="color: #525252;"># </span><span style="color: #525252;">prints b</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"getting the length of a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">get length of list</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">len</span>(a_list)) <span style="color: #525252;"># </span><span style="color: #525252;">prints 3</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"getting the indices of a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">since we often know the length of a list using the len() function,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">we typically use a for loop to iterate through each index in the list.</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #c678dd;">len</span>(a_list)):
+    <span style="color: #c678dd;">print</span>(i)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">0</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">1</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">2</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"getting the values of a list via looping by index:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">we can also iterate through each element in the list using indexing.</span>
+<span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #c678dd;">len</span>(a_list)):
+    <span style="color: #c678dd;">print</span>(a_list[i])
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">a</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">b</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">c</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"getting the values of a list via looping by value:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">alternatively, we can iterate through each element in the list by value.</span>
+<span style="color: #51afef;">for</span> element <span style="color: #51afef;">in</span> a_list:
+    <span style="color: #c678dd;">print</span>(element)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">a</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">b</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">c</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"getting indices and corresponding value using enumerate():"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">you can simplify looping through iterables (lists, tuples, strings)</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">when you need both the index and value using the enumerate() function.</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">side note: the str() function converts an object</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">(such as a float or integer) into a string.</span>
+<span style="color: #51afef;">for</span> index, value <span style="color: #51afef;">in</span> <span style="color: #c678dd;">enumerate</span>(a_list):
+    <span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">str</span>(index) + <span style="color: #99bb66;">", "</span> + value)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">0, a</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">1, b</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">2, c</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"getting type list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">get the type "list"</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">type</span>(a_list)) <span style="color: #525252;"># </span><span style="color: #525252;">prints &lt;class 'list'&gt;</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"using list constructor to create a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">list constructor creates a new list</span>
+<span style="color: #dcaeea;">b_list</span> = <span style="color: #c678dd;">list</span>((<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>))
+<span style="color: #c678dd;">print</span>(b_list) <span style="color: #525252;"># </span><span style="color: #525252;">prints [1, 2, 3]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"appending an element to a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">adds a new element to the end of the list</span>
+b_list.append(<span style="color: #dd8844; font-weight: bold;">4</span>)
+<span style="color: #c678dd;">print</span>(b_list) <span style="color: #525252;"># </span><span style="color: #525252;">prints [1, 2, 3, 4]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"inserting an element into a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">inserts an element at a specific index in the list</span>
+a_list.insert(<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #99bb66;">"d"</span>)
+<span style="color: #c678dd;">print</span>(a_list) <span style="color: #525252;"># </span><span style="color: #525252;">prints ["a", "d", "b", "c"]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"removing an element from a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">removes the first occurrence of a specific value from the list</span>
+a_list.remove(<span style="color: #99bb66;">"b"</span>)
+<span style="color: #c678dd;">print</span>(a_list) <span style="color: #525252;"># </span><span style="color: #525252;">prints ["a", "d", "c"]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"popping an element from a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">removes and returns the element at the specific index.</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">if the index is not provided, then it removes and returns the last element.</span>
+b_list.pop(<span style="color: #dd8844; font-weight: bold;">1</span>)
+<span style="color: #c678dd;">print</span>(b_list) <span style="color: #525252;"># </span><span style="color: #525252;">prints [1, 3, 4]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"popping the last element from a list:"</span>)
+
+b_list.pop()
+<span style="color: #c678dd;">print</span>(b_list) <span style="color: #525252;"># </span><span style="color: #525252;">prints [1, 3]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"sorting a list in-place:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">sorts the elements in-place, modifying the original list.</span>
+a_list.sort()
+<span style="color: #c678dd;">print</span>(a_list) <span style="color: #525252;"># </span><span style="color: #525252;">prints ["a", "c", "d"]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"reversing a list in-place:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">reverses the order of elements in the list in-place.</span>
+b_list.reverse()
+<span style="color: #c678dd;">print</span>(b_list) <span style="color: #525252;"># </span><span style="color: #525252;">prints [3, 1]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"returning the minimum item in a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">returns the minimum item in the list</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">min</span>(b_list)) <span style="color: #525252;"># </span><span style="color: #525252;">prints 1</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"returning the maximum item in a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">returns the maximum item in the list</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">max</span>(b_list)) <span style="color: #525252;"># </span><span style="color: #525252;">prints 3</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"returning the sum of the items in a list:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">returns the sum of the items in the list (supports a mix of floats and integers)</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">sum</span>(b_list)) <span style="color: #525252;"># </span><span style="color: #525252;">prints 4</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"basic slicing:"</span>)
+
+<span style="color: #dcaeea;">c_list</span> = [<span style="color: #dd8844; font-weight: bold;">0</span>, <span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>, <span style="color: #dd8844; font-weight: bold;">4</span>, <span style="color: #dd8844; font-weight: bold;">5</span>, <span style="color: #dd8844; font-weight: bold;">6</span>, <span style="color: #dd8844; font-weight: bold;">7</span>, <span style="color: #dd8844; font-weight: bold;">8</span>, <span style="color: #dd8844; font-weight: bold;">9</span>]
+
+<span style="color: #525252;"># </span><span style="color: #525252;">slicing from start to end with default step = 1:</span>
+<span style="color: #c678dd;">print</span>(c_list[<span style="color: #dd8844; font-weight: bold;">2</span>:<span style="color: #dd8844; font-weight: bold;">7</span>]) <span style="color: #525252;"># </span><span style="color: #525252;">prints [2, 3, 4, 5, 6]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"slicing with default start:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">slicing from the beginning with default start = 0 and default step = 1:</span>
+<span style="color: #c678dd;">print</span>(c_list[:<span style="color: #dd8844; font-weight: bold;">5</span>]) <span style="color: #525252;"># </span><span style="color: #525252;">prints [0, 1, 2, 3, 4]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"slicing with default stop:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">slicing to the end with default stop = (end of list) and default step = 1:</span>
+<span style="color: #c678dd;">print</span>(c_list[<span style="color: #dd8844; font-weight: bold;">4</span>:]) <span style="color: #525252;"># </span><span style="color: #525252;">prints [4, 5, 6, 7, 8, 9]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"slicing with step:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">slicing with a step:</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"example 1:"</span>, c_list[<span style="color: #dd8844; font-weight: bold;">1</span>:<span style="color: #dd8844; font-weight: bold;">9</span>:<span style="color: #dd8844; font-weight: bold;">2</span>]) <span style="color: #525252;"># </span><span style="color: #525252;">prints [1, 3, 5, 7]</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"example 2:"</span>, c_list[::<span style="color: #dd8844; font-weight: bold;">3</span>]) <span style="color: #525252;"># </span><span style="color: #525252;">prints [0, 3, 6, 9]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"slicing with negative indices:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">slicing with negative indices:</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"example 1:"</span>, c_list[-<span style="color: #dd8844; font-weight: bold;">3</span>:]) <span style="color: #525252;"># </span><span style="color: #525252;">prints [7, 8, 9]</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"example 2:"</span>, c_list[:-<span style="color: #dd8844; font-weight: bold;">2</span>]) <span style="color: #525252;"># </span><span style="color: #525252;">prints [0, 1, 2, 3, 4, 5, 6, 7]</span>
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"example 3:"</span>, c_list[-<span style="color: #dd8844; font-weight: bold;">5</span>:-<span style="color: #dd8844; font-weight: bold;">2</span>]) <span style="color: #525252;"># </span><span style="color: #525252;">prints [5, 6, 7]</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"using slicing to reverse a list:"</span>)
+        
+<span style="color: #525252;"># </span><span style="color: #525252;">using slicing to reverse a list:</span>
+<span style="color: #c678dd;">print</span>(c_list[::-<span style="color: #dd8844; font-weight: bold;">1</span>]) <span style="color: #525252;"># </span><span style="color: #525252;">prints [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]</span>
+
+</pre>
+</div>
+
+<pre class="example" id="org9cae2fa">
+indexing into a list:
+b
+
+getting the length of a list:
+3
+
+getting the indices of a list:
+0
+1
+2
+
+getting the values of a list via looping by index:
+a
+b
+c
+
+getting the values of a list via looping by value:
+a
+b
+c
+
+getting indices and corresponding value using enumerate():
+0, a
+1, b
+2, c
+
+getting type list:
+&lt;class 'list'&gt;
+
+using list constructor to create a list:
+[1, 2, 3]
+
+appending an element to a list:
+[1, 2, 3, 4]
+
+inserting an element into a list:
+['a', 'd', 'b', 'c']
+
+removing an element from a list:
+['a', 'd', 'c']
+
+popping an element from a list:
+[1, 3, 4]
+
+popping the last element from a list:
+[1, 3]
+
+sorting a list in-place:
+['a', 'c', 'd']
+
+reversing a list in-place:
+[3, 1]
+
+returning the minimum item in a list:
+1
+
+returning the maximum item in a list:
+3
+
+returning the sum of the items in a list:
+4
+
+basic slicing:
+[2, 3, 4, 5, 6]
+
+slicing with default start:
+[0, 1, 2, 3, 4]
+
+slicing with default stop:
+[4, 5, 6, 7, 8, 9]
+
+slicing with step:
+example 1: [1, 3, 5, 7]
+example 2: [0, 3, 6, 9]
+
+slicing with negative indices:
+example 1: [7, 8, 9]
+example 2: [0, 1, 2, 3, 4, 5, 6, 7]
+example 3: [5, 6, 7]
+
+using slicing to reverse a list:
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+</pre>
+</div>
+</div>
+<div id="outline-container-orgd90efc4" class="outline-2">
+<h2 id="orgd90efc4"><span class="section-number-2">2.</span> tuples</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>ordered</li>
+<li>unlike lists, they are immutable, meaning that once a tuple is created, it cannot be changed.
+<ul class="org-ul">
+<li>any changes made to it require creating a copy.</li>
+</ul></li>
+<li>similar to lists, it can store elements of different data types.</li>
+<li>can access values via indexing.</li>
+<li>use a tuple when:
+<ul class="org-ul">
+<li>the collection of items should not be modified.</li>
+<li>the size of the collection will not change.</li>
+<li>when a function needs to return multiple values.</li>
+</ul></li>
+<li>example: (x, y, z) coordinates and RGB color values.
+<ul class="org-ul">
+<li>based on what you&rsquo;re using these for, you might not want to be able to easily change its data.</li>
+</ul></li>
+<li>tuples tend to have some common or similar functions/methods that can also be used on lists.</li>
+<li>here are some common functions/methods used on tuples:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #525252;"># </span><span style="color: #525252;">tuple example</span>
+<span style="color: #dcaeea;">a_tuple</span> = (<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">1</span>)
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"indexing into a tuple:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">like lists, tuples also support indexing.</span>
+<span style="color: #c678dd;">print</span>(a_tuple[<span style="color: #dd8844; font-weight: bold;">2</span>]) <span style="color: #525252;"># </span><span style="color: #525252;">prints 3</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"counting the number of times a value appears in a tuple:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">counts the number of times a specific value appears within the tuple</span>
+<span style="color: #dcaeea;">a_count</span> = a_tuple.count(<span style="color: #dd8844; font-weight: bold;">1</span>)
+<span style="color: #c678dd;">print</span>(a_count) <span style="color: #525252;"># </span><span style="color: #525252;">prints 2</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"returns the index of the first occurrence of a specific value:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">searches the tuple for a specific value and returns the index of the first occurrence of it.</span>
+<span style="color: #dcaeea;">a_index</span> = a_tuple.index(<span style="color: #dd8844; font-weight: bold;">2</span>)
+<span style="color: #c678dd;">print</span>(a_index) <span style="color: #525252;"># </span><span style="color: #525252;">prints 1</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"converting a collection of items into a tuple:"</span>)
+        
+<span style="color: #525252;"># </span><span style="color: #525252;">converts a collection of items into a tuple</span>
+<span style="color: #dcaeea;">b_tuple</span> = <span style="color: #c678dd;">tuple</span>([<span style="color: #dd8844; font-weight: bold;">5</span>, <span style="color: #dd8844; font-weight: bold;">4</span>, <span style="color: #dd8844; font-weight: bold;">3</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">1</span>])
+<span style="color: #c678dd;">print</span>(b_tuple) <span style="color: #525252;"># </span><span style="color: #525252;">prints (5, 4, 3, 2, 1)</span>
+
+</pre>
+</div>
+
+<pre class="example" id="org9e29efe">
+indexing into a tuple:
+3
+
+counting the number of times a value appears in a tuple:
+2
+
+returns the index of the first occurrence of a specific value:
+1
+
+converting a collection of items into a tuple:
+(5, 4, 3, 2, 1)
+</pre>
+</div>
+</div>
+<div id="outline-container-orge59f45e" class="outline-2">
+<h2 id="orge59f45e"><span class="section-number-2">3.</span> namedtuples</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>an extension of regular tuples.</li>
+<li>unlike regular tuples, which use indexing, elements can be accessed via descriptive field names using dot notation.
+<ul class="org-ul">
+<li>helps with code readability.</li>
+</ul></li>
+<li>similar to regular tuples, namedtuple objects are also immutable.
+<ul class="org-ul">
+<li>in order to make changes, a new copy of the namedtuple must be created.</li>
+</ul></li>
+<li>there are two main parts of a namedtuple:
+<ul class="org-ul">
+<li>the name. (the very first item when defining a namedtuple)</li>
+<li>the fields/attributes associated with it. (the remaining items when defining a namedtuple AKA the stuff in square brackets)</li>
+</ul></li>
+<li>use a namedtuple when:
+<ul class="org-ul">
+<li>you want a simple, structured data container.</li>
+<li>you want to group related data together.</li>
+</ul></li>
+<li>example: a College namedtuple
+<ul class="org-ul">
+<li>may have fields for the college name, faculty population, student population, and mascot affiliated with the college.</li>
+<li>typically, you only want to use namedtuples for objects that are nouns rather than verbs.
+<ul class="org-ul">
+<li>example: chess
+<ul class="org-ul">
+<li>it would be appropriate to have a Piece namedtuple that has the name of the piece tuple (king, queen, bishop, etc) and its coordinates on a 2-dimensional list.</li>
+<li>it wouldn&rsquo;t be appropriate to have a MovePiece namedtuple because moving a piece is an action rather than a noun. it would make more sense to use something like a function to execute this task.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>here are some common functions/methods used on namedtuples:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #525252;"># </span><span style="color: #525252;">don't forget to import namedtuple from the collections library before implementing namedtuple!</span>
+<span style="color: #51afef;">from</span> collections <span style="color: #51afef;">import</span> namedtuple
+
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"original Piece namedtuple:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">namedtuple definition example</span>
+<span style="color: #dcaeea;">Piece</span> = namedtuple(<span style="color: #99bb66;">'Piece'</span>, [<span style="color: #99bb66;">'piece_type'</span>, <span style="color: #99bb66;">'x'</span>, <span style="color: #99bb66;">'y'</span>])
+
+<span style="color: #525252;"># </span><span style="color: #525252;">creation of namedtuple instance example</span>
+<span style="color: #dcaeea;">queen</span> = Piece(piece_type=<span style="color: #99bb66;">"queen"</span>, x=<span style="color: #dd8844; font-weight: bold;">1</span>, y=<span style="color: #dd8844; font-weight: bold;">5</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">creates and returns a new namedtuple instance with</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">the specified fields replaced by new values.</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">make sure to assign it to a variable so that the modified namedtuple can be used later.</span>
+<span style="color: #dcaeea;">new_queen</span> = queen._replace(x=<span style="color: #dd8844; font-weight: bold;">2</span>, y=<span style="color: #dd8844; font-weight: bold;">4</span>)
+<span style="color: #c678dd;">print</span>(queen)
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"modified Piece namedtuple:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">should still print out the original namedtuple,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">Piece(piece_type="queen", x=1, y=5)</span>
+
+<span style="color: #c678dd;">print</span>(new_queen)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out the new namedtuple with modified fields,</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">Piece(piece_type="queen", x=2, y=4)</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"prints the Piece namedtuple fields, piece type, x, and y, in that order:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">use dot notation to access namedtuple fields</span>
+<span style="color: #c678dd;">print</span>(new_queen.piece_type) <span style="color: #525252;"># </span><span style="color: #525252;">prints queen</span>
+<span style="color: #c678dd;">print</span>(new_queen.x) <span style="color: #525252;"># </span><span style="color: #525252;">prints 2</span>
+<span style="color: #c678dd;">print</span>(new_queen.y) <span style="color: #525252;"># </span><span style="color: #525252;">prints 4</span>
+
+</pre>
+</div>
+
+<pre class="example" id="orge5f95d2">
+original Piece namedtuple:
+Piece(piece_type='queen', x=1, y=5)
+
+modified Piece namedtuple:
+Piece(piece_type='queen', x=2, y=4)
+
+prints the Piece namedtuple fields, piece type, x, and y, in that order:
+queen
+2
+4
+</pre>
+</div>
+</div>
+<div id="outline-container-org7447291" class="outline-2">
+<h2 id="org7447291"><span class="section-number-2">4.</span> sets</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>unordered</li>
+<li>sets only store unique elements.
+<ul class="org-ul">
+<li>if you try to add a duplicate element, it will be ignored and the set will remain unchanged.</li>
+</ul></li>
+<li>mutable (can add or remove elements)
+<ul class="org-ul">
+<li>individual elements in a set must be immutable.</li>
+</ul></li>
+<li>iterable</li>
+<li>use a set when:
+<ul class="org-ul">
+<li>you need a collection of unique items.</li>
+<li>order of your collection doesn&rsquo;t matter.</li>
+<li>you want to use mathematical set operations on your collection. (ics 6b type stuff)</li>
+</ul></li>
+<li>example: a collection of letters.
+<ul class="org-ul">
+<li>useful when you want to have unique, specific alphabet/grammar for a grammar parser.</li>
+</ul></li>
+<li>here are some common functions/methods used on sets:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"adds an element to a set:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">set example</span>
+<span style="color: #dcaeea;">a_set</span> = {<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>}
+
+<span style="color: #525252;"># </span><span style="color: #525252;">add an element to a set.</span>
+a_set.add(<span style="color: #dd8844; font-weight: bold;">3</span>)
+<span style="color: #c678dd;">print</span>(a_set) <span style="color: #525252;"># </span><span style="color: #525252;">prints {1, 2, 3} in no particular order.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"removes an element from a set:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">removes a specific element from a set.</span>
+a_set.remove(<span style="color: #dd8844; font-weight: bold;">2</span>)
+<span style="color: #c678dd;">print</span>(a_set) <span style="color: #525252;"># </span><span style="color: #525252;">prints {1, 3} in no particular order.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"pops an arbitrary element from a set:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">removes and returns some arbitrary element from the set.</span>
+<span style="color: #dcaeea;">a_element</span> = a_set.pop()
+<span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"popped element: </span>{a_element}<span style="color: #99bb66;">"</span>) <span style="color: #525252;"># </span><span style="color: #525252;">will either print 1 or 3.</span>
+<span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"set after popped element: </span>{a_set}<span style="color: #99bb66;">"</span>) <span style="color: #525252;"># </span><span style="color: #525252;">will either print {1} or {3}.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"gets the union of two sets:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">just some new sets</span>
+<span style="color: #dcaeea;">set1</span> = {<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>}
+<span style="color: #dcaeea;">set2</span> = {<span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>}
+
+<span style="color: #525252;"># </span><span style="color: #525252;">returns a new set containing all unique elements from both sets.</span>
+<span style="color: #dcaeea;">union_set</span> = set1.union(set2)
+<span style="color: #c678dd;">print</span>(union_set) <span style="color: #525252;"># </span><span style="color: #525252;">prints {1, 2, 3} in no particular order.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"gets the intersection of two sets:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">even more new sets</span>
+<span style="color: #dcaeea;">set1</span> = {<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>}
+<span style="color: #dcaeea;">set2</span> = {<span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>, <span style="color: #dd8844; font-weight: bold;">4</span>}
+
+<span style="color: #525252;"># </span><span style="color: #525252;">returns a new set containing only elements that are in both sets.</span>
+<span style="color: #dcaeea;">intersection_set</span> = set1.intersection(set2)
+<span style="color: #c678dd;">print</span>(intersection_set) <span style="color: #525252;"># </span><span style="color: #525252;">prints {2, 3} in no particular order.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"gets the difference of two sets:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">yep more new sets... again</span>
+<span style="color: #dcaeea;">set1</span> = {<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>}
+<span style="color: #dcaeea;">set2</span> = {<span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">4</span>}
+
+<span style="color: #525252;"># </span><span style="color: #525252;">returns a new set containing elements present in the first set but not in the second set.</span>
+<span style="color: #dcaeea;">difference_set</span> = set1.difference(set2)
+<span style="color: #c678dd;">print</span>(difference_set) <span style="color: #525252;"># </span><span style="color: #525252;">prints {1, 3} in no particular order.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"gets the symmetric difference of two sets:"</span>)
+        
+<span style="color: #525252;"># </span><span style="color: #525252;">finally... have some more new sets</span>
+<span style="color: #dcaeea;">set1</span> = {<span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>}
+<span style="color: #dcaeea;">set2</span> = {<span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #dd8844; font-weight: bold;">3</span>, <span style="color: #dd8844; font-weight: bold;">4</span>}
+
+<span style="color: #dcaeea;">symmetric_difference</span> = set1.symmetric_difference(set2)
+<span style="color: #c678dd;">print</span>(symmetric_difference) <span style="color: #525252;"># </span><span style="color: #525252;">prints {1, 4} in no particular order.</span>
+
+</pre>
+</div>
+
+<pre class="example" id="org4232667">
+adds an element to a set:
+{1, 2, 3}
+
+removes an element from a set:
+{1, 3}
+
+pops an arbitrary element from a set:
+popped element: 1
+set after popped element: {3}
+
+gets the union of two sets:
+{1, 2, 3}
+
+gets the intersection of two sets:
+{2, 3}
+
+gets the difference of two sets:
+{1, 3}
+
+gets the symmetric difference of two sets:
+{1, 4}
+</pre>
+</div>
+</div>
+<div id="outline-container-org678b78a" class="outline-2">
+<h2 id="org678b78a"><span class="section-number-2">5.</span> dictionaries</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>store data as collection of key-value pairs.
+<ul class="org-ul">
+<li>keys must be immutable and unique, but values don&rsquo;t have to be unique and can be either immutable or mutable.</li>
+<li>therefore, dictionary values can be of any data type.</li>
+</ul></li>
+<li>mutable</li>
+<li>typically unordered</li>
+<li>use a dictionary when:
+<ul class="org-ul">
+<li>you have two pieces of data associated with each other, which can be used to create key-value pairs.</li>
+<li>order of elements doesn&rsquo;t matter.</li>
+</ul></li>
+<li>examples: student dictionary
+<ul class="org-ul">
+<li>where the keys are student IDs and the values are student names.</li>
+<li>since student IDs are unique, they should be used as the key to access a student&rsquo;s name.</li>
+<li>two students can have the exact same name while still being distinguishable via their student IDs (keys).</li>
+</ul></li>
+<li>here are some common functions/methods used on dictionaries:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"retrieves value based on key using get() method:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">dictionary example</span>
+<span style="color: #dcaeea;">a_dict</span> = {<span style="color: #99bb66;">"a"</span>: <span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #99bb66;">"b"</span>: <span style="color: #dd8844; font-weight: bold;">2</span>}
+
+<span style="color: #525252;"># </span><span style="color: #525252;">returns the value associated with the key.</span>
+<span style="color: #c678dd;">print</span>(a_dict.get(<span style="color: #99bb66;">"b"</span>)) <span style="color: #525252;"># </span><span style="color: #525252;">prints 2</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"updating a dictionary with multiple key-value pairs:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">updates the dictionary with key-value pairs from another dictionary.</span>
+<span style="color: #dcaeea;">other_dict</span> = {<span style="color: #99bb66;">"c"</span>: <span style="color: #dd8844; font-weight: bold;">3</span>, <span style="color: #99bb66;">"d"</span>: <span style="color: #dd8844; font-weight: bold;">4</span>}
+a_dict.update(other_dict)
+<span style="color: #c678dd;">print</span>(a_dict) <span style="color: #525252;"># </span><span style="color: #525252;">prints {"a": 1, "b": 2, "c": 3, "d": 4} in no particular order.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"popping a key-value pair:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">removes the item with the specific key and returns its value.</span>
+<span style="color: #dcaeea;">d_value</span> = other_dict.pop(<span style="color: #99bb66;">"d"</span>)
+<span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"popped key: </span>{d_value}<span style="color: #99bb66;">"</span>) <span style="color: #525252;"># </span><span style="color: #525252;">prints 4</span>
+<span style="color: #c678dd;">print</span>(f<span style="color: #99bb66;">"dictionary after popped key: </span>{other_dict}<span style="color: #99bb66;">"</span>) <span style="color: #525252;"># </span><span style="color: #525252;">prints {"c": 3}</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"changing a key's value:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">changes the value associated with a specific key</span>
+<span style="color: #dcaeea;">a_dict</span>[<span style="color: #99bb66;">"a"</span>] = <span style="color: #dd8844; font-weight: bold;">0</span>
+<span style="color: #c678dd;">print</span>(a_dict) <span style="color: #525252;"># </span><span style="color: #525252;">prints {"a": 0, "b": 2, "c": 3, "d": 4} in no particular order.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"changing multiple keys' values using update() method:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">the update() method can be used to change the value of one or more key-value pairs at once.</span>
+<span style="color: #dcaeea;">other_other_dict</span> = {<span style="color: #99bb66;">"b"</span>: <span style="color: #dd8844; font-weight: bold;">1</span>, <span style="color: #99bb66;">"c"</span>: <span style="color: #dd8844; font-weight: bold;">2</span>, <span style="color: #99bb66;">"d"</span>: <span style="color: #dd8844; font-weight: bold;">3</span>}
+a_dict.update(other_other_dict)
+<span style="color: #c678dd;">print</span>(a_dict) <span style="color: #525252;"># </span><span style="color: #525252;">prints {"a": 0, "b": 1, "c": 2, "d": 3} in no particular order.</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"using a for loop to iterate through keys:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">you can use for loops to iterate through the keys, values, or keys and values.</span>
+<span style="color: #51afef;">for</span> key <span style="color: #51afef;">in</span> a_dict:
+    <span style="color: #c678dd;">print</span>(key)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">a</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">b</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">c</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">d</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"using a for loop and keys() method to iterate through keys:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">you can use the keys() method to retrieve the keys from a dictionary.</span>
+<span style="color: #51afef;">for</span> key <span style="color: #51afef;">in</span> a_dict.keys():
+    <span style="color: #c678dd;">print</span>(key)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">a</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">b</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">c</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">d</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"using values() method to iterate through values:"</span>)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">you can use the values() method to retrieve the values from a dictionary.</span>
+<span style="color: #51afef;">for</span> value <span style="color: #51afef;">in</span> a_dict.values():
+    <span style="color: #c678dd;">print</span>(value)
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">0</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">1</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">2</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">3</span>
+
+<span style="color: #c678dd;">print</span>()
+<span style="color: #c678dd;">print</span>(<span style="color: #99bb66;">"using items() method to iterate through keys and their respective values:"</span>)
+        
+<span style="color: #525252;"># </span><span style="color: #525252;">you can use the items() method to retrieve the keys and their respective values</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">from a dictionary.</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">side note: the str() function converts an object</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">(such as a float or integer) into a string.</span>
+<span style="color: #51afef;">for</span> key, value <span style="color: #51afef;">in</span> a_dict.items():
+    <span style="color: #c678dd;">print</span>(key + <span style="color: #99bb66;">", "</span> + <span style="color: #c678dd;">str</span>(value))
+
+<span style="color: #525252;"># </span><span style="color: #525252;">prints out:</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">a, 0</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">b, 1</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">c, 2</span>
+<span style="color: #525252;"># </span><span style="color: #525252;">d, 3</span>
+
+</pre>
+</div>
+
+<pre class="example" id="org94e0094">
+retrieves value based on key using get() method:
+2
+
+updating a dictionary with multiple key-value pairs:
+{'a': 1, 'b': 2, 'c': 3, 'd': 4}
+
+popping a key-value pair:
+popped key: 4
+dictionary after popped key: {'c': 3}
+
+changing a key's value:
+{'a': 0, 'b': 2, 'c': 3, 'd': 4}
+
+changing multiple keys' values using update() method:
+{'a': 0, 'b': 1, 'c': 2, 'd': 3}
+
+using a for loop to iterate through keys:
+a
+b
+c
+d
+
+using a for loop and keys() method to iterate through keys:
+a
+b
+c
+d
+
+using values() method to iterate through values:
+0
+1
+2
+3
+
+using items() method to iterate through keys and their respective values:
+a, 0
+b, 1
+c, 2
+d, 3
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Ashley Pock</p>
+<p class="date">Created: 11/10/2025 Mon</p>
+</div>
+</body>
+</html>
